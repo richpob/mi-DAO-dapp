@@ -388,5 +388,8 @@ npm install
 npm start
 
 ```
+### Uso de VS Code y GitHub
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/be280fea-4ce9-41ba-b469-8bf2c9e0e5b1)
+
 ## Licencia
 Este proyecto está bajo la Licencia MIT.
