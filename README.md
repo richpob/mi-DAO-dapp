@@ -50,3 +50,137 @@ contract Community is Ownable {
     }
 }
 ```
+## Frontend
+El frontend está desarrollado en React y utiliza Web3.js para interactuar con el contrato inteligente a través de MetaMask.
+
+### Componentes Principales
+Formulario de Registro de Miembro: Permite a los usuarios registrarse como miembros.
+Creador de Propuestas: Interfaz para que los administradores creen nuevas propuestas.
+Votaciones: Permite a los miembros votar en propuestas activas.
+
+### Ejemplo de Uso de Componentes
+```js
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+import { TextField, Button, CircularProgress, Typography, Container, Box } from '@mui/material';
+
+const contractAddress = '0x055e3df582b840a19b583d04c4e85225939fb303';
+const abi = []; // Acá va el ABI del contrato
+
+function App() {
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [adminName, setAdminName] = useState('');
+  const [communityAddress, setCommunityAddress] = useState('');
+  const [communityName, setCommunityName] = useState('');
+  const [member, setMember] = useState('');
+  const [tokens, setTokens] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function loadWeb3() {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        setWeb3(web3);
+        setAccounts(accounts);
+        setContract(contract);
+
+        const adminName = await contract.methods.adminName().call();
+        const communityAddr = await contract.methods.communityAddress().call();
+        const communityNm = await contract.methods.communityName().call();
+
+        setAdminName(adminName);
+        setCommunityAddress(communityAddr);
+        setCommunityName(communityNm);
+      } else {
+        alert('Please install MetaMask!');
+      }
+    }
+
+    loadWeb3();
+  }, []);
+
+  const registerMember = async () => {
+    if (!contract || !member || !tokens) {
+      alert('All fields are required');
+      return;
+    }
+    setLoading(true);
+    try {
+      await contract.methods.registerMember(member, tokens).send({ from: accounts[0] });
+      alert('Member registered successfully');
+    } catch (error) {
+      console.error('Error registering member:', error);
+      alert('Failed to register member');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Container maxWidth="sm">
+      <Typography variant="h4" component="h1" gutterBottom>
+        Community Contract Interaction
+      </Typography>
+      <Box sx={{ mb: 2 }}>
+        <Typography variant="h6">Contract Information</Typography>
+        <Typography><strong>Admin Name:</strong> {adminName}</Typography>
+        <Typography><strong>Community Address:</strong> {communityAddress}</Typography>
+        <Typography><strong>Community Name:</strong> {communityName}</Typography>
+      </Box>
+      <Box>
+        <Typography variant="h6" gutterBottom>Register Member</Typography>
+        <TextField
+          fullWidth
+          label="Member Address"
+          value={member}
+          onChange={e => setMember(e.target.value)}
+          margin="normal"
+        />
+        <TextField
+          fullWidth
+          label="Tokens"
+          type="number"
+          value={tokens}
+          onChange={e => setTokens(e.target.value)}
+          margin="normal"
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={registerMember}
+          disabled={loading}
+          fullWidth
+        >
+          {loading ? <CircularProgress size={24} /> : 'Register Member'}
+        </Button>
+      </Box>
+    </Container>
+  );
+}
+
+export default App;
+
+```
+### Instalación y Configuración
+Para ejecutar este proyecto localmente, necesitarás instalar las dependencias y configurar MetaMask en tu navegador.
+
+### Prerrequisitos
+Node.js
+npm o yarn
+MetaMask instalado en tu navegador
+### Pasos para la Instalación
+Clona el repositorio.
+Instala las dependencias:
+
+```bash
+npm install
+npm start
+
+```
+## Licencia
+Este proyecto está bajo la Licencia MIT.
