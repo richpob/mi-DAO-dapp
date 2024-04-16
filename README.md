@@ -108,9 +108,7 @@ contract Community is Ownable(msg.sender) {
 ## Frontend
 El frontend está desarrollado en React y utiliza Web3.js para interactuar con el contrato inteligente a través de MetaMask.
 
-![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/b075634c-cff3-4425-8c82-909db1cda75c)
-
-
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/369d8df2-02f5-4eab-a17a-e7fae0152c1d)
 
 ### Componentes Principales
 Formulario de Registro de Miembro: Permite a los usuarios registrarse como miembros.
