@@ -17,6 +17,9 @@ Este proyecto es un sistema de votación descentralizado para una comunidad, imp
 
 El contrato está desplegado en la dirección: [0x055e3df582b840a19b583d04c4e85225939fb303](https://sepolia.etherscan.io/address/0x055e3df582b840a19b583d04c4e85225939fb303#readContract) en la red de prueba Sepolia.
 
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/3d6db9ee-3187-4e57-9b15-1edb019748dd)
+
+
 ### Funcionalidades del Contrato
 - **Registro de miembros**: Los miembros pueden registrarse almacenando una cantidad de tokens que les permitirá votar.
 - **Creación de propuestas**: Los administradores pueden crear propuestas sobre las cuales los miembros podrán votar.
@@ -104,6 +107,9 @@ contract Community is Ownable(msg.sender) {
 ```
 ## Frontend
 El frontend está desarrollado en React y utiliza Web3.js para interactuar con el contrato inteligente a través de MetaMask.
+
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/f5e9abf2-b4e5-43ad-8222-29161377fb74)
+
 
 ### Componentes Principales
 Formulario de Registro de Miembro: Permite a los usuarios registrarse como miembros.
