@@ -105,6 +105,57 @@ contract Community is Ownable(msg.sender) {
     }
 }
 ```
+## Contrato de la Comunidad
+
+### Descripción General
+Este contrato inteligente, desarrollado con Solidity, permite la gestión de una comunidad mediante la asignación de tokens de votación a sus miembros y la creación y votación de propuestas. Está diseñado para ser administrado por el propietario del contrato, quien tiene derechos exclusivos para ciertas operaciones.
+
+### Características del Contrato
+- **Gestión de Miembros y Propuestas**: Solo el propietario puede añadir miembros y crear propuestas.
+- **Votación**: Los miembros pueden votar en propuestas activas utilizando tokens asignados.
+
+### Detalles del Contrato
+
+#### Importaciones
+- **OpenZeppelin Contracts**: Utiliza `Ownable` para funciones de propiedad y `ERC20` para manejar tokens.
+  ```solidity
+  import "@openzeppelin/contracts/access/Ownable.sol";
+  import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+#### Variables de Estado
+**communityName**, **communityAddress, presidentName, adminName, creationDate: Almacenan información básica sobre la comunidad.
+memberTokens**: Un mapping que relaciona cada dirección de miembro con sus tokens de votación.
+**proposals**: Un array que almacena todas las propuestas creadas.
+**hasVoted**: Un mapping doble para rastrear si un miembro ha votado en una propuesta.
+#### Structs
+**Proposal**: Define una propuesta con descripción, conteo de votos y estado de ejecución.
+```solidity
+struct Proposal {
+    string description;
+    uint256 voteCount;
+    bool executed;
+}
+```
+#### Eventos
+**ProposalCreated**: Se emite cuando se crea una nueva propuesta.
+**VoteReceived**: Se emite cuando un voto es registrado.
+**ProposalExecuted**: Se emite cuando una propuesta es ejecutada.
+****Constructor
+Inicializa el contrato con datos básicos de la comunidad y establece el propietario.
+```solidity
+constructor(string memory _name, string memory _address, string memory _president, string memory _admin, uint256 _creationDate) Ownable() {
+    communityName = _name;
+    communityAddress = _address;
+    presidentName = _president;
+    adminName = _admin;
+    creationDate = _creationDate;
+}
+```
+#### Funciones del Contrato
+**registerMember**: Asigna tokens a un nuevo miembro. Solo puede ser llamada por el propietario.
+**createProposal**: Crea una nueva propuesta. Solo puede ser iniciada por el propietario.
+**voteOnProposal**: Permite a los miembros votar en propuestas activas.
+**executeProposal**: Ejecuta una propuesta aprobada. Solo el propietario puede ejecutarla.
+
 ## Frontend
 El frontend está desarrollado en React y utiliza Web3.js para interactuar con el contrato inteligente a través de MetaMask.
 
