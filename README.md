@@ -166,7 +166,7 @@ Formulario de Registro de Miembro: Permite a los usuarios registrarse como miemb
 Creador de Propuestas: Interfaz para que los administradores creen nuevas propuestas.
 Votaciones: Permite a los miembros votar en propuestas activas.
 
-### Ejemplo de Uso de Componentes
+### Fuentes de los Componentes
 ```js
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
@@ -272,8 +272,106 @@ function App() {
 }
 
 export default App;
+```
+
+## Interacción con el Contrato de la Comunidad
+
+Este proyecto React permite interactuar con un contrato inteligente de Ethereum para gestionar una comunidad. Los usuarios pueden registrar miembros y consultar información del contrato directamente desde la interfaz.
+
+### Funcionalidades
+
+- **Conexión con MetaMask**: Conexión automática a MetaMask para interactuar con la blockchain.
+- **Registro de miembros**: Permite a los administradores registrar nuevos miembros y asignarles tokens.
+- **Visualización de información del contrato**: Muestra datos como el nombre del administrador, la dirección y el nombre de la comunidad.
+
+### Tecnologías Utilizadas
+
+- React.js
+- Web3.js
+- Material-UI: para los componentes de la interfaz de usuario.
+- Ethereum Blockchain
+
+### Instalación y Configuración
+
+Asegúrate de tener instalado `Node.js` y `npm`. Sigue los pasos para ejecutar la aplicación:
+
+1. Clona el repositorio.
+2. Instala las dependencias necesarias:
+
+
+## Detalles del Código
+
+### Componente `App`
+
+Es el componente principal que maneja la conexión con Ethereum y muestra la interfaz de usuario.
+
+#### Variables de Estado
+
+- `web3`: Instancia de Web3 usada en toda la aplicación.
+- `contract`: Instancia del contrato inteligente.
+- `accounts`: Lista de cuentas disponibles desde el wallet.
+- `adminName`, `communityAddress`, `communityName`: Variables para almacenar y mostrar la información del contrato.
+- `member`: Dirección del nuevo miembro a registrar.
+- `tokens`: Número de tokens a asignar al nuevo miembro.
+- `loading`: Estado para controlar la visualización del indicador de carga durante las transacciones.
+
+#### Hook `useEffect`
+
+Inicializa la conexión con MetaMask y carga los datos iniciales desde el contrato:
+
+```javascript
+useEffect(() => {
+async function loadWeb3() {
+ if (window.ethereum) {
+   const web3 = new Web3(window.ethereum);
+   await window.ethereum.enable();
+   const accounts = await web3.eth.getAccounts();
+   const contract = new web3.eth.Contract(abi, contractAddress);
+   setWeb3(web3);
+   setAccounts(accounts);
+   setContract(contract);
+
+   const adminName = await contract.methods.adminName().call();
+   const communityAddr = await contract.methods.communityAddress().call();
+   const communityNm = await contract.methods.communityName().call();
+
+   setAdminName(adminName);
+   setCommunityAddress(communityAddr);
+   setCommunityName(communityNm);
+ } else {
+   alert('¡Instala MetaMask!');
+ }
+}
+
+loadWeb3();
+}, []);
+```
+#### Función registerMember
+Maneja el registro de un nuevo miembro enviando una transacción al contrato inteligente:
+```javascript
+const registerMember = async () => {
+  if (!contract || !member || !tokens) {
+    alert('Todos los campos son obligatorios');
+    return;
+  }
+  setLoading(true);
+  try {
+    await contract.methods.registerMember(member, tokens).send({ from: accounts[0] });
+    alert('Miembro registrado con éxito');
+  } catch (error) {
+    console.error('Error al registrar miembro:', error);
+    alert('Falló el registro del miembro');
+  } finally {
+    setLoading(false);
+  }
+};
 
 ```
+### Mejoras Futuras
+**Manejo avanzado de errores**: Proporcionar retroalimentación más detallada sobre los errores de blockchain.
+**Actualizaciones en tiempo real**: Implementar WebSocket u otra tecnología para obtener actualizaciones en tiempo real del estado del contrato.
+**Accesibilidad mejorada:** Asegurar que la interfaz cumpla con los estándares de accesibilidad.
+
 ### Instalación y Configuración
 Para ejecutar este proyecto localmente, necesitarás instalar las dependencias y configurar MetaMask en tu navegador.
 
