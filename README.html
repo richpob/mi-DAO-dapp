@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="sistema-de-votaci%C3%B3n-para-una-comunidad">Sistema de Votación para una Comunidad</h1>
+<h2 id="descripci%C3%B3n">Descripción</h2>
+<p>Este proyecto es un sistema de votación descentralizado para una comunidad, implementado utilizando un smart contract en Ethereum y una interfaz de usuario desarrollada en React. Permite a los miembros registrados votar en propuestas y ver los resultados de las votaciones de manera transparente y segura.</p>
+<h2 id="tecnolog%C3%ADas-utilizadas">Tecnologías Utilizadas</h2>
+<ul>
+<li><strong>Solidity</strong>: Lenguaje de programación para escribir smart contracts.</li>
+<li><strong>Ethereum Testnet (Sepolia)</strong>: Red de prueba donde se despliega el contrato.</li>
+<li><strong>MetaMask</strong>: Wallet de Ethereum para interactuar con el blockchain.</li>
+<li><strong>Remix</strong>: IDE de Ethereum usado para desarrollar y desplegar el smart contract.</li>
+<li><strong>Visual Studio Code</strong>: Editor de código utilizado para el desarrollo del frontend.</li>
+<li><strong>React</strong>: Biblioteca de JavaScript para construir la interfaz de usuario.</li>
+<li><strong>Web3.js</strong>: Biblioteca para interactuar con nodos Ethereum desde el navegador.</li>
+<li><strong>Material-UI</strong>: Biblioteca de componentes React para un diseño de interfaz moderno y responsive.</li>
+</ul>
+<h2 id="smart-contract">Smart Contract</h2>
+<p>El contrato está desplegado en la dirección: <a href="https://sepolia.etherscan.io/address/0x055e3df582b840a19b583d04c4e85225939fb303#readContract">0x055e3df582b840a19b583d04c4e85225939fb303</a> en la red de prueba Sepolia.</p>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/3d6db9ee-3187-4e57-9b15-1edb019748dd" alt="image"></p>
+<h3 id="funcionalidades-del-contrato">Funcionalidades del Contrato</h3>
+<ul>
+<li><strong>Registro de miembros</strong>: Los miembros pueden registrarse almacenando una cantidad de tokens que les permitirá votar.</li>
+<li><strong>Creación de propuestas</strong>: Los administradores pueden crear propuestas sobre las cuales los miembros podrán votar.</li>
+<li><strong>Votación</strong>: Los miembros utilizan sus tokens para votar en propuestas activas.</li>
+<li><strong>Ejecución de propuestas</strong>: Las propuestas que alcanzan los votos necesarios pueden ser ejecutadas por los administradores.</li>
+</ul>
+<h3 id="m%C3%A9todos-principales">Métodos Principales</h3>
+<pre class="hljs"><code><div>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;
+import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;
+
+ // Contrato de la Comunidad
+contract Community is Ownable(msg.sender) {
+    string public communityName;
+    string public communityAddress;
+    string public presidentName;
+    string public adminName;
+    uint256 public creationDate;
+
+    mapping(address =&gt; uint256) public memberTokens;  // Tokens de votación asignados a cada miembro
+    Proposal[] public proposals; // Lista de propuestas
+    mapping(uint256 =&gt; mapping(address =&gt; bool)) public hasVoted; // Mapping to track if a member has voted on a proposal
+
+    struct Proposal {
+        string description;
+        uint256 voteCount;
+        bool executed;
+    }
+
+    event ProposalCreated(uint256 proposalId, string description);
+    event VoteReceived(uint256 proposalId, address voter, uint256 votes);
+    event ProposalExecuted(uint256 proposalId);
+
+    constructor(
+        string memory _name,
+        string memory _address,
+        string memory _president,
+        string memory _admin,
+        uint256 _creationDate
+    ) {
+        communityName = _name;
+        communityAddress = _address;
+        presidentName = _president;
+        adminName = _admin;
+        creationDate = _creationDate;
+    }
+
+    function registerMember(address member, uint256 tokens) public onlyOwner {
+        memberTokens[member] = tokens;
+    }
+
+    function createProposal(string memory description) public onlyOwner {
+        proposals.push(Proposal({
+            description: description,
+            voteCount: 0,
+            executed: false
+        }));
+
+        uint256 newProposalId = proposals.length - 1;
+        emit ProposalCreated(newProposalId, description);
+    }
+
+    function voteOnProposal(uint256 proposalId, uint256 votes) public {
+        require(memberTokens[msg.sender] &gt;= votes, &quot;Not enough tokens to vote&quot;);
+        require(!hasVoted[proposalId][msg.sender], &quot;Already voted&quot;);
+
+        proposals[proposalId].voteCount += votes;
+        hasVoted[proposalId][msg.sender] = true;
+        memberTokens[msg.sender] -= votes;
+
+        emit VoteReceived(proposalId, msg.sender, votes);
+    }
+
+    function executeProposal(uint256 proposalId) public onlyOwner {
+        require(!proposals[proposalId].executed, &quot;Proposal already executed&quot;);
+        proposals[proposalId].executed = true;
+        // Logic to execute the proposal goes here
+
+        emit ProposalExecuted(proposalId);
+    }
+}
+</div></code></pre>
+<h2 id="contrato-de-la-comunidad">Contrato de la Comunidad</h2>
+<h3 id="descripci%C3%B3n-general">Descripción General</h3>
+<p>Este contrato inteligente, desarrollado con Solidity, permite la gestión de una comunidad mediante la asignación de tokens de votación a sus miembros y la creación y votación de propuestas. Está diseñado para ser administrado por el propietario del contrato, quien tiene derechos exclusivos para ciertas operaciones.</p>
+<h3 id="caracter%C3%ADsticas-del-contrato">Características del Contrato</h3>
+<ul>
+<li><strong>Gestión de Miembros y Propuestas</strong>: Solo el propietario puede añadir miembros y crear propuestas.</li>
+<li><strong>Votación</strong>: Los miembros pueden votar en propuestas activas utilizando tokens asignados.</li>
+</ul>
+<h3 id="detalles-del-contrato">Detalles del Contrato</h3>
+<h4 id="importaciones">Importaciones</h4>
+<ul>
+<li><strong>OpenZeppelin Contracts</strong>: Utiliza <code>Ownable</code> para funciones de propiedad y <code>ERC20</code> para manejar tokens.<pre class="hljs"><code><div>import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;
+import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;
+</div></code></pre>
+</li>
+</ul>
+<h4 id="variables-de-estado">Variables de Estado</h4>
+<p><strong>communityName</strong>, <strong>communityAddress, presidentName, adminName, creationDate: Almacenan información básica sobre la comunidad.
+memberTokens</strong>: Un mapping que relaciona cada dirección de miembro con sus tokens de votación.
+<strong>proposals</strong>: Un array que almacena todas las propuestas creadas.
+<strong>hasVoted</strong>: Un mapping doble para rastrear si un miembro ha votado en una propuesta.</p>
+<h4 id="structs">Structs</h4>
+<p><strong>Proposal</strong>: Define una propuesta con descripción, conteo de votos y estado de ejecución.</p>
+<pre class="hljs"><code><div>struct Proposal {
+    string description;
+    uint256 voteCount;
+    bool executed;
+}
+</div></code></pre>
+<h4 id="eventos">Eventos</h4>
+<p><strong>ProposalCreated</strong>: Se emite cuando se crea una nueva propuesta.
+<strong>VoteReceived</strong>: Se emite cuando un voto es registrado.
+<strong>ProposalExecuted</strong>: Se emite cuando una propuesta es ejecutada.
+****Constructor
+Inicializa el contrato con datos básicos de la comunidad y establece el propietario.</p>
+<pre class="hljs"><code><div>constructor(string memory _name, string memory _address, string memory _president, string memory _admin, uint256 _creationDate) Ownable() {
+    communityName = _name;
+    communityAddress = _address;
+    presidentName = _president;
+    adminName = _admin;
+    creationDate = _creationDate;
+}
+</div></code></pre>
+<h4 id="funciones-del-contrato">Funciones del Contrato</h4>
+<p><strong>registerMember</strong>: Asigna tokens a un nuevo miembro. Solo puede ser llamada por el propietario.
+<strong>createProposal</strong>: Crea una nueva propuesta. Solo puede ser iniciada por el propietario.
+<strong>voteOnProposal</strong>: Permite a los miembros votar en propuestas activas.
+<strong>executeProposal</strong>: Ejecuta una propuesta aprobada. Solo el propietario puede ejecutarla.</p>
+<h2 id="frontend">Frontend</h2>
+<p>El frontend está desarrollado en React y utiliza Web3.js para interactuar con el contrato inteligente a través de MetaMask.</p>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/369d8df2-02f5-4eab-a17a-e7fae0152c1d" alt="image"></p>
+<h3 id="componentes-principales">Componentes Principales</h3>
+<p>Formulario de Registro de Miembro: Permite a los usuarios registrarse como miembros.
+Creador de Propuestas: Interfaz para que los administradores creen nuevas propuestas.
+Votaciones: Permite a los miembros votar en propuestas activas.</p>
+<h3 id="fuentes-de-los-componentes">Fuentes de los Componentes</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Web3 <span class="hljs-keyword">from</span> <span class="hljs-string">'web3'</span>;
+<span class="hljs-keyword">import</span> { TextField, Button, CircularProgress, Typography, Container, Box } <span class="hljs-keyword">from</span> <span class="hljs-string">'@mui/material'</span>;
+
+<span class="hljs-keyword">const</span> contractAddress = <span class="hljs-string">'0x055e3df582b840a19b583d04c4e85225939fb303'</span>;
+<span class="hljs-keyword">const</span> abi = []; <span class="hljs-comment">// Acá va el ABI del contrato</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [web3, setWeb3] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [contract, setContract] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [accounts, setAccounts] = useState([]);
+  <span class="hljs-keyword">const</span> [adminName, setAdminName] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [communityAddress, setCommunityAddress] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [communityName, setCommunityName] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [member, setMember] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [tokens, setTokens] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [loading, setLoading] = useState(<span class="hljs-literal">false</span>);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadWeb3</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.ethereum) {
+        <span class="hljs-keyword">const</span> web3 = <span class="hljs-keyword">new</span> Web3(<span class="hljs-built_in">window</span>.ethereum);
+        <span class="hljs-keyword">await</span> <span class="hljs-built_in">window</span>.ethereum.enable();
+        <span class="hljs-keyword">const</span> accounts = <span class="hljs-keyword">await</span> web3.eth.getAccounts();
+        <span class="hljs-keyword">const</span> contract = <span class="hljs-keyword">new</span> web3.eth.Contract(abi, contractAddress);
+        setWeb3(web3);
+        setAccounts(accounts);
+        setContract(contract);
+
+        <span class="hljs-keyword">const</span> adminName = <span class="hljs-keyword">await</span> contract.methods.adminName().call();
+        <span class="hljs-keyword">const</span> communityAddr = <span class="hljs-keyword">await</span> contract.methods.communityAddress().call();
+        <span class="hljs-keyword">const</span> communityNm = <span class="hljs-keyword">await</span> contract.methods.communityName().call();
+
+        setAdminName(adminName);
+        setCommunityAddress(communityAddr);
+        setCommunityName(communityNm);
+      } <span class="hljs-keyword">else</span> {
+        alert(<span class="hljs-string">'Please install MetaMask!'</span>);
+      }
+    }
+
+    loadWeb3();
+  }, []);
+
+  <span class="hljs-keyword">const</span> registerMember = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">if</span> (!contract || !member || !tokens) {
+      alert(<span class="hljs-string">'All fields are required'</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+    setLoading(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">await</span> contract.methods.registerMember(member, tokens).send({ <span class="hljs-attr">from</span>: accounts[<span class="hljs-number">0</span>] });
+      alert(<span class="hljs-string">'Member registered successfully'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Error registering member:'</span>, error);
+      alert(<span class="hljs-string">'Failed to register member'</span>);
+    } <span class="hljs-keyword">finally</span> {
+      setLoading(<span class="hljs-literal">false</span>);
+    }
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Container</span> <span class="hljs-attr">maxWidth</span>=<span class="hljs-string">"sm"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h4"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">"h1"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>
+        Community Contract Interaction
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Box</span> <span class="hljs-attr">sx</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">mb:</span> <span class="hljs-attr">2</span> }}&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span>&gt;</span>Contract Information<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Admin Name:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {adminName}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Community Address:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {communityAddress}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Community Name:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {communityName}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Box</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>Register Member<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+          <span class="hljs-attr">fullWidth</span>
+          <span class="hljs-attr">label</span>=<span class="hljs-string">"Member Address"</span>
+          <span class="hljs-attr">value</span>=<span class="hljs-string">{member}</span>
+          <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setMember(e.target.value)}
+          margin="normal"
+        /&gt;
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+          <span class="hljs-attr">fullWidth</span>
+          <span class="hljs-attr">label</span>=<span class="hljs-string">"Tokens"</span>
+          <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span>
+          <span class="hljs-attr">value</span>=<span class="hljs-string">{tokens}</span>
+          <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setTokens(e.target.value)}
+          margin="normal"
+        /&gt;
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>
+          <span class="hljs-attr">variant</span>=<span class="hljs-string">"contained"</span>
+          <span class="hljs-attr">color</span>=<span class="hljs-string">"primary"</span>
+          <span class="hljs-attr">onClick</span>=<span class="hljs-string">{registerMember}</span>
+          <span class="hljs-attr">disabled</span>=<span class="hljs-string">{loading}</span>
+          <span class="hljs-attr">fullWidth</span>
+        &gt;</span>
+          {loading ? <span class="hljs-tag">&lt;<span class="hljs-name">CircularProgress</span> <span class="hljs-attr">size</span>=<span class="hljs-string">{24}</span> /&gt;</span> : 'Register Member'}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Container</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;
+</div></code></pre>
+<h2 id="interacci%C3%B3n-con-el-contrato-de-la-comunidad">Interacción con el Contrato de la Comunidad</h2>
+<p>Este proyecto React permite interactuar con un contrato inteligente de Ethereum para gestionar una comunidad. Los usuarios pueden registrar miembros y consultar información del contrato directamente desde la interfaz.</p>
+<h3 id="funcionalidades">Funcionalidades</h3>
+<ul>
+<li><strong>Conexión con MetaMask</strong>: Conexión automática a MetaMask para interactuar con la blockchain.</li>
+<li><strong>Registro de miembros</strong>: Permite a los administradores registrar nuevos miembros y asignarles tokens.</li>
+<li><strong>Visualización de información del contrato</strong>: Muestra datos como el nombre del administrador, la dirección y el nombre de la comunidad.</li>
+</ul>
+<h3 id="tecnolog%C3%ADas-utilizadas">Tecnologías Utilizadas</h3>
+<ul>
+<li>React.js</li>
+<li>Web3.js</li>
+<li>Material-UI: para los componentes de la interfaz de usuario.</li>
+<li>Ethereum Blockchain</li>
+</ul>
+<h3 id="instalaci%C3%B3n-y-configuraci%C3%B3n">Instalación y Configuración</h3>
+<p>Asegúrate de tener instalado <code>Node.js</code> y <code>npm</code>. Sigue los pasos para ejecutar la aplicación:</p>
+<ol>
+<li>Clona el repositorio.</li>
+<li>Instala las dependencias necesarias:</li>
+</ol>
+<h2 id="detalles-del-c%C3%B3digo">Detalles del Código</h2>
+<h3 id="componente-app">Componente <code>App</code></h3>
+<p>Es el componente principal que maneja la conexión con Ethereum y muestra la interfaz de usuario.</p>
+<h4 id="variables-de-estado">Variables de Estado</h4>
+<ul>
+<li><code>web3</code>: Instancia de Web3 usada en toda la aplicación.</li>
+<li><code>contract</code>: Instancia del contrato inteligente.</li>
+<li><code>accounts</code>: Lista de cuentas disponibles desde el wallet.</li>
+<li><code>adminName</code>, <code>communityAddress</code>, <code>communityName</code>: Variables para almacenar y mostrar la información del contrato.</li>
+<li><code>member</code>: Dirección del nuevo miembro a registrar.</li>
+<li><code>tokens</code>: Número de tokens a asignar al nuevo miembro.</li>
+<li><code>loading</code>: Estado para controlar la visualización del indicador de carga durante las transacciones.</li>
+</ul>
+<h4 id="hook-useeffect">Hook <code>useEffect</code></h4>
+<p>Inicializa la conexión con MetaMask y carga los datos iniciales desde el contrato:</p>
+<pre class="hljs"><code><div>useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadWeb3</span>(<span class="hljs-params"></span>) </span>{
+ <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.ethereum) {
+   <span class="hljs-keyword">const</span> web3 = <span class="hljs-keyword">new</span> Web3(<span class="hljs-built_in">window</span>.ethereum);
+   <span class="hljs-keyword">await</span> <span class="hljs-built_in">window</span>.ethereum.enable();
+   <span class="hljs-keyword">const</span> accounts = <span class="hljs-keyword">await</span> web3.eth.getAccounts();
+   <span class="hljs-keyword">const</span> contract = <span class="hljs-keyword">new</span> web3.eth.Contract(abi, contractAddress);
+   setWeb3(web3);
+   setAccounts(accounts);
+   setContract(contract);
+
+   <span class="hljs-keyword">const</span> adminName = <span class="hljs-keyword">await</span> contract.methods.adminName().call();
+   <span class="hljs-keyword">const</span> communityAddr = <span class="hljs-keyword">await</span> contract.methods.communityAddress().call();
+   <span class="hljs-keyword">const</span> communityNm = <span class="hljs-keyword">await</span> contract.methods.communityName().call();
+
+   setAdminName(adminName);
+   setCommunityAddress(communityAddr);
+   setCommunityName(communityNm);
+ } <span class="hljs-keyword">else</span> {
+   alert(<span class="hljs-string">'¡Instala MetaMask!'</span>);
+ }
+}
+
+loadWeb3();
+}, []);
+</div></code></pre>
+<h4 id="funci%C3%B3n-registermember">Función registerMember</h4>
+<p>Maneja el registro de un nuevo miembro enviando una transacción al contrato inteligente:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> registerMember = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">if</span> (!contract || !member || !tokens) {
+    alert(<span class="hljs-string">'Todos los campos son obligatorios'</span>);
+    <span class="hljs-keyword">return</span>;
+  }
+  setLoading(<span class="hljs-literal">true</span>);
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">await</span> contract.methods.registerMember(member, tokens).send({ <span class="hljs-attr">from</span>: accounts[<span class="hljs-number">0</span>] });
+    alert(<span class="hljs-string">'Miembro registrado con éxito'</span>);
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Error al registrar miembro:'</span>, error);
+    alert(<span class="hljs-string">'Falló el registro del miembro'</span>);
+  } <span class="hljs-keyword">finally</span> {
+    setLoading(<span class="hljs-literal">false</span>);
+  }
+};
+
+</div></code></pre>
+<h3 id="mejoras-futuras">Mejoras Futuras</h3>
+<p><strong>Manejo avanzado de errores</strong>: Proporcionar retroalimentación más detallada sobre los errores de blockchain.
+<strong>Actualizaciones en tiempo real</strong>: Implementar WebSocket u otra tecnología para obtener actualizaciones en tiempo real del estado del contrato.
+<strong>Accesibilidad mejorada:</strong> Asegurar que la interfaz cumpla con los estándares de accesibilidad.</p>
+<h3 id="instalaci%C3%B3n-y-configuraci%C3%B3n">Instalación y Configuración</h3>
+<p>Para ejecutar este proyecto localmente, necesitarás instalar las dependencias y configurar MetaMask en tu navegador.</p>
+<h3 id="prerrequisitos">Prerrequisitos</h3>
+<p>Node.js
+npm o yarn
+MetaMask instalado en tu navegador</p>
+<h3 id="pasos-para-la-instalaci%C3%B3n">Pasos para la Instalación</h3>
+<p>Clona el repositorio.
+Instala las dependencias:</p>
+<pre class="hljs"><code><div>npm install
+npm start
+
+</div></code></pre>
+<h3 id="uso-de-vs-code-y-github">Uso de VS Code y GitHub</h3>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/be280fea-4ce9-41ba-b469-8bf2c9e0e5b1" alt="image"></p>
+<h2 id="licencia">Licencia</h2>
+<p>Este proyecto está bajo la Licencia MIT.</p>
+
+</body>
+</html>
