@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Sistema de Votación para una Comunidad
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción
+Este proyecto es un sistema de votación descentralizado para una comunidad, implementado utilizando un smart contract en Ethereum y una interfaz de usuario desarrollada en React. Permite a los miembros registrados votar en propuestas y ver los resultados de las votaciones de manera transparente y segura.
 
-## Available Scripts
+## Tecnologías Utilizadas
+- **Solidity**: Lenguaje de programación para escribir smart contracts.
+- **Ethereum Testnet (Sepolia)**: Red de prueba donde se despliega el contrato.
+- **MetaMask**: Wallet de Ethereum para interactuar con el blockchain.
+- **Remix**: IDE de Ethereum usado para desarrollar y desplegar el smart contract.
+- **Visual Studio Code**: Editor de código utilizado para el desarrollo del frontend.
+- **React**: Biblioteca de JavaScript para construir la interfaz de usuario.
+- **Web3.js**: Biblioteca para interactuar con nodos Ethereum desde el navegador.
+- **Material-UI**: Biblioteca de componentes React para un diseño de interfaz moderno y responsive.
 
-In the project directory, you can run:
+## Smart Contract
 
-### `npm start`
+El contrato está desplegado en la dirección: [0x055e3df582b840a19b583d04c4e85225939fb303](https://sepolia.etherscan.io/address/0x055e3df582b840a19b583d04c4e85225939fb303#readContract) en la red de prueba Sepolia.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Funcionalidades del Contrato
+- **Registro de miembros**: Los miembros pueden registrarse almacenando una cantidad de tokens que les permitirá votar.
+- **Creación de propuestas**: Los administradores pueden crear propuestas sobre las cuales los miembros podrán votar.
+- **Votación**: Los miembros utilizan sus tokens para votar en propuestas activas.
+- **Ejecución de propuestas**: Las propuestas que alcanzan los votos necesarios pueden ser ejecutadas por los administradores.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Métodos Principales
+```solidity
+pragma solidity ^0.8.20;
 
-### `npm test`
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+contract Community is Ownable {
+    // Variables de estado y constructor aquí
 
-### `npm run build`
+    function registerMember(address member, uint256 tokens) public onlyOwner {
+        // Lógica de registro
+    }
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    function createProposal(string memory description) public onlyOwner {
+        // Lógica para crear propuestas
+    }
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    function voteOnProposal(uint256 proposalId, uint256 votes) public {
+        // Lógica para votar en propuestas
+    }
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    function executeProposal(uint256 proposalId) public onlyOwner {
+        // Lógica para ejecutar propuestas
+    }
+}
+```

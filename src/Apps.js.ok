@@ -1,0 +1,417 @@
+Version 5
+**************
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+import { TextField, Button, CircularProgress, Typography, Container, Box } from '@mui/material';
+
+const contractAddress = '0x055e3df582b840a19b583d04c4e85225939fb303';
+const abi = [{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_address","type":"string"},{"internalType":"string","name":"_president","type":"string"},{"internalType":"string","name":"_admin","type":"string"},{"internalType":"uint256","name":"_creationDate","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"string","name":"description","type":"string"}],"name":"ProposalCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"ProposalExecuted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"address","name":"voter","type":"address"},{"indexed":false,"internalType":"uint256","name":"votes","type":"uint256"}],"name":"VoteReceived","type":"event"},{"inputs":[],"name":"adminName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityAddress","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"description","type":"string"}],"name":"createProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"creationDate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"executeProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"hasVoted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"memberTokens","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"presidentName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"proposals","outputs":[{"internalType":"string","name":"description","type":"string"},{"internalType":"uint256","name":"voteCount","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"member","type":"address"},{"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"registerMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"},{"internalType":"uint256","name":"votes","type":"uint256"}],"name":"voteOnProposal","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+
+function App() {
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [adminName, setAdminName] = useState('');
+  const [communityAddress, setCommunityAddress] = useState('');
+  const [communityName, setCommunityName] = useState('');
+  const [member, setMember] = useState('');
+  const [tokens, setTokens] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function loadWeb3() {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        setWeb3(web3);
+        setAccounts(accounts);
+        setContract(contract);
+
+        const adminName = await contract.methods.adminName().call();
+        const communityAddr = await contract.methods.communityAddress().call();
+        const communityNm = await contract.methods.communityName().call();
+
+        setAdminName(adminName);
+        setCommunityAddress(communityAddr);
+        setCommunityName(communityNm);
+      } else {
+        alert('Please install MetaMask!');
+      }
+    }
+
+    loadWeb3();
+  }, []);
+
+  const registerMember = async () => {
+    if (!contract || !member || !tokens) {
+      alert('All fields are required');
+      return;
+    }
+    setLoading(true);
+    try {
+      await contract.methods.registerMember(member, tokens).send({ from: accounts[0] });
+      alert('Member registered successfully');
+    } catch (error) {
+      console.error('Error registering member:', error);
+      alert('Failed to register member');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Container maxWidth="sm">
+      <Typography variant="h4" component="h1" gutterBottom>
+        Community Contract Interaction
+      </Typography>
+      <Box sx={{ mb: 2 }}>
+        <Typography variant="h6">Contract Information</Typography>
+        <Typography><strong>Admin Name:</strong> {adminName}</Typography>
+        <Typography><strong>Community Address:</strong> {communityAddress}</Typography>
+        <Typography><strong>Community Name:</strong> {communityName}</Typography>
+      </Box>
+      <Box>
+        <Typography variant="h6" gutterBottom>Register Member</Typography>
+        <TextField
+          fullWidth
+          label="Member Address"
+          value={member}
+          onChange={e => setMember(e.target.value)}
+          margin="normal"
+        />
+        <TextField
+          fullWidth
+          label="Tokens"
+          type="number"
+          value={tokens}
+          onChange={e => setTokens(e.target.value)}
+          margin="normal"
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={registerMember}
+          disabled={loading}
+          fullWidth
+        >
+          {loading ? <CircularProgress size={24} /> : 'Register Member'}
+        </Button>
+      </Box>
+    </Container>
+  );
+}
+
+export default App;
+
+
+
+**************
+Version 4
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+
+const contractAddress = '0x055e3df582b840a19b583d04c4e85225939fb303';
+const abi = [{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_address","type":"string"},{"internalType":"string","name":"_president","type":"string"},{"internalType":"string","name":"_admin","type":"string"},{"internalType":"uint256","name":"_creationDate","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"string","name":"description","type":"string"}],"name":"ProposalCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"ProposalExecuted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"address","name":"voter","type":"address"},{"indexed":false,"internalType":"uint256","name":"votes","type":"uint256"}],"name":"VoteReceived","type":"event"},{"inputs":[],"name":"adminName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityAddress","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"description","type":"string"}],"name":"createProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"creationDate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"executeProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"hasVoted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"memberTokens","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"presidentName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"proposals","outputs":[{"internalType":"string","name":"description","type":"string"},{"internalType":"uint256","name":"voteCount","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"member","type":"address"},{"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"registerMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"},{"internalType":"uint256","name":"votes","type":"uint256"}],"name":"voteOnProposal","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+
+function App() {
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [adminName, setAdminName] = useState('');
+  const [communityAddress, setCommunityAddress] = useState('');
+  const [communityName, setCommunityName] = useState('');
+  const [member, setMember] = useState('');
+  const [tokens, setTokens] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function loadWeb3() {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        setWeb3(web3);
+        setAccounts(accounts);
+        setContract(contract);
+
+        const adminName = await contract.methods.adminName().call();
+        const communityAddr = await contract.methods.communityAddress().call();
+        const communityNm = await contract.methods.communityName().call();
+
+        setAdminName(adminName);
+        setCommunityAddress(communityAddr);
+        setCommunityName(communityNm);
+      } else {
+        alert('Please install MetaMask!');
+      }
+    }
+
+    loadWeb3();
+  }, []);
+
+  const registerMember = async () => {
+    if (!contract || !member || !tokens) {
+      alert('All fields are required');
+      return;
+    }
+    setLoading(true);
+    try {
+      await contract.methods.registerMember(member, tokens).send({ from: accounts[0] });
+      alert('Member registered successfully');
+    } catch (error) {
+      console.error('Error registering member:', error);
+      alert('Failed to register member');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Community Contract Interaction</h1>
+      <div>
+        <h2>Contract Information</h2>
+        <p><strong>Admin Name:</strong> {adminName}</p>
+        <p><strong>Community Address:</strong> {communityAddress}</p>
+        <p><strong>Community Name:</strong> {communityName}</p>
+      </div>
+      <div>
+        <h2>Register Member</h2>
+        <input 
+          type="text" 
+          value={member} 
+          onChange={e => setMember(e.target.value)} 
+          placeholder="Enter member address"
+        />
+        <input 
+          type="number" 
+          value={tokens} 
+          onChange={e => setTokens(e.target.value)} 
+          placeholder="Enter tokens"
+        />
+        <button onClick={registerMember} disabled={loading}>
+          {loading ? 'Processing...' : 'Register Member'}
+        </button>
+      </div>
+      {loading && <p>Loading... <span role="img" aria-label="clock">⏳</span></p>}
+    </div>
+  );
+}
+
+export default App;
+
+Version 3
+
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+
+const contractAddress = '0x055e3df582b840a19b583d04c4e85225939fb303';
+const abi = [{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_address","type":"string"},{"internalType":"string","name":"_president","type":"string"},{"internalType":"string","name":"_admin","type":"string"},{"internalType":"uint256","name":"_creationDate","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"string","name":"description","type":"string"}],"name":"ProposalCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"ProposalExecuted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"address","name":"voter","type":"address"},{"indexed":false,"internalType":"uint256","name":"votes","type":"uint256"}],"name":"VoteReceived","type":"event"},{"inputs":[],"name":"adminName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityAddress","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"description","type":"string"}],"name":"createProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"creationDate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"executeProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"hasVoted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"memberTokens","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"presidentName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"proposals","outputs":[{"internalType":"string","name":"description","type":"string"},{"internalType":"uint256","name":"voteCount","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"member","type":"address"},{"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"registerMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"},{"internalType":"uint256","name":"votes","type":"uint256"}],"name":"voteOnProposal","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+
+function App() {
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [member, setMember] = useState('');
+  const [tokens, setTokens] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    async function loadWeb3() {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        setWeb3(web3);
+        setAccounts(accounts);
+        setContract(contract);
+      } else {
+        alert('Please install MetaMask!');
+      }
+    }
+
+    loadWeb3();
+  }, []);
+
+  const registerMember = async () => {
+    if (!contract || !member || !tokens) {
+      alert('All fields are required');
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await contract.methods.registerMember(member, tokens).send({ from: accounts[0] });
+      setMessage('Datos del miembro de la comunidad exitosamente registrado');
+      console.log(response);
+    } catch (error) {
+      console.error('Error registering member:', error);
+      setMessage('Failed to register member');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Interacción con el Contrato para la comunidad</h1>
+      {loading ? <p>Esperar por favor...<span role="img" aria-label="clock">⏳</span></p> : null}
+      <div>
+        <input 
+          type="text" 
+          value={member} 
+          onChange={e => setMember(e.target.value)} 
+          placeholder="Enter member address"
+        />
+        <input 
+          type="number" 
+          value={tokens} 
+          onChange={e => setTokens(e.target.value)} 
+          placeholder="Enter tokens"
+        />
+        <button onClick={registerMember} disabled={loading}>Register Member</button>
+      </div>
+      {message ? <p>{message}</p> : null}
+    </div>
+  );
+}
+
+export default App;
+
+
+
+Version 1
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+
+const contractAddress = '0x055e3df582b840a19b583d04c4e85225939fb303';
+const abi = [{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_address","type":"string"},{"internalType":"string","name":"_president","type":"string"},{"internalType":"string","name":"_admin","type":"string"},{"internalType":"uint256","name":"_creationDate","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"string","name":"description","type":"string"}],"name":"ProposalCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"ProposalExecuted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"address","name":"voter","type":"address"},{"indexed":false,"internalType":"uint256","name":"votes","type":"uint256"}],"name":"VoteReceived","type":"event"},{"inputs":[],"name":"adminName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityAddress","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"description","type":"string"}],"name":"createProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"creationDate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"executeProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"hasVoted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"memberTokens","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"presidentName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"proposals","outputs":[{"internalType":"string","name":"description","type":"string"},{"internalType":"uint256","name":"voteCount","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"member","type":"address"},{"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"registerMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"},{"internalType":"uint256","name":"votes","type":"uint256"}],"name":"voteOnProposal","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+
+function App() {
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [communityAddress, setCommunityAddress] = useState('');
+  const [accounts, setAccounts] = useState([]);
+
+  useEffect(() => {
+    async function loadWeb3() {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        try {
+          await window.ethereum.enable();
+          const accounts = await web3.eth.getAccounts();
+          const contract = new web3.eth.Contract(abi, contractAddress);
+          setWeb3(web3);
+          setAccounts(accounts);
+          setContract(contract);
+        } catch (error) {
+          alert('Error accessing the Ethereum wallet.');
+        }
+      } else {
+        alert('Please install MetaMask!');
+      }
+    }
+
+    loadWeb3();
+  }, []);
+
+  const fetchCommunityAddress = async () => {
+    const address = await contract.methods.communityAddress().call();
+    setCommunityAddress(address);
+  };
+
+  const registerMember = async (member, tokens) => {
+    await contract.methods.registerMember(member, tokens).send({ from: accounts[0] });
+  };
+
+  return (
+    <div>
+      <h1>Community Contract Interaction</h1>
+      <div>
+        <button onClick={fetchCommunityAddress}>Get Community Address</button>
+        <p>Community Address: {communityAddress}</p>
+      </div>
+      <div>
+        <button onClick={() => registerMember("0xAddress", 100)}>Register Member</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+Verion 2
+
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+
+const contractAddress = '0x055e3df582b840a19b583d04c4e85225939fb303';
+const abi = [{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_address","type":"string"},{"internalType":"string","name":"_president","type":"string"},{"internalType":"string","name":"_admin","type":"string"},{"internalType":"uint256","name":"_creationDate","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"string","name":"description","type":"string"}],"name":"ProposalCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"ProposalExecuted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"proposalId","type":"uint256"},{"indexed":false,"internalType":"address","name":"voter","type":"address"},{"indexed":false,"internalType":"uint256","name":"votes","type":"uint256"}],"name":"VoteReceived","type":"event"},{"inputs":[],"name":"adminName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityAddress","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"communityName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"description","type":"string"}],"name":"createProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"creationDate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"}],"name":"executeProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"hasVoted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"memberTokens","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"presidentName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"proposals","outputs":[{"internalType":"string","name":"description","type":"string"},{"internalType":"uint256","name":"voteCount","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"member","type":"address"},{"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"registerMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"proposalId","type":"uint256"},{"internalType":"uint256","name":"votes","type":"uint256"}],"name":"voteOnProposal","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+
+function App() {
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [member, setMember] = useState('');
+  const [tokens, setTokens] = useState('');
+
+  useEffect(() => {
+    async function loadWeb3() {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        setWeb3(web3);
+        setAccounts(accounts);
+        setContract(contract);
+      } else {
+        alert('Please install MetaMask!');
+      }
+    }
+
+    loadWeb3();
+  }, []);
+
+  const registerMember = async () => {
+    if (!contract || !member || !tokens) {
+      alert('All fields are required');
+      return;
+    }
+    try {
+      await contract.methods.registerMember(member, tokens).send({ from: accounts[0] });
+      alert('Member registered successfully');
+    } catch (error) {
+      console.error('Error registering member:', error);
+      alert('Failed to register member');
+    }
+  };
+
+  return (
+    <div>
+      <h1>Community Contract Interaction</h1>
+      <div>
+        <input 
+          type="text" 
+          value={member} 
+          onChange={e => setMember(e.target.value)} 
+          placeholder="Enter member address"
+        />
+        <input 
+          type="number" 
+          value={tokens} 
+          onChange={e => setTokens(e.target.value)} 
+          placeholder="Enter tokens"
+        />
+        <button onClick={registerMember}>Register Member</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
