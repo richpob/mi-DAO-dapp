@@ -1,4 +1,4 @@
-# Sistema de Votación para una Comunidad
+# Sistema de Votación para una Comunidad Sprint 3
 
 ## Descripción
 Este proyecto es un sistema de votación descentralizado para una comunidad, implementado utilizando un smart contract en Ethereum y una interfaz de usuario desarrollada en React. Permite a los miembros registrados votar en propuestas y ver los resultados de las votaciones de manera transparente y segura.
