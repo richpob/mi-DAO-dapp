@@ -13,12 +13,40 @@ Este proyecto es un sistema de votación descentralizado para una comunidad, imp
 - **Web3.js**: Biblioteca para interactuar con nodos Ethereum desde el navegador.
 - **Material-UI**: Biblioteca de componentes React para un diseño de interfaz moderno y responsive.
 ## Instalación de ambiente de desarroll
-ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$ truffle --version
+ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$ 
+
+truffle --version
 Truffle v5.11.5 (core: 5.11.5)
 Ganache v7.9.1
 Solidity - 0.8.20 (solc-js)
 Node v20.12.2
 Web3.js v1.10.0
+
+```bas
+# Install Gitun Desktop
+sudo apt-get update
+wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
+sudo apt update && sudo apt install github-desktop
+# Install VS Code
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code
+# Install nodejs LTS
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install curl
+sudo apt-get update
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install nodejs
+node -v
+npm -v
+```
 
 ## Smart Contract
 
