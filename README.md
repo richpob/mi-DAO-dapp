@@ -23,8 +23,10 @@ Node v20.12.2
 Web3.js v1.10.0
 
 ```bas
-# Install Github Desktop
+# Install Github Desktop & Git
 sudo apt-get update
+sudo apt-get install git
+
 wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
 sudo apt update && sudo apt install github-desktop
@@ -46,14 +48,6 @@ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install nodejs
 node -v
 npm -v
-#Install
-sudo npm install -g truffle
-sudo npm install -g truffle dashboard
-truffle --version
-
-# Installa Git
-   31  sudo apt-get install git
-
 ```
 
 ## Smart Contract
