@@ -12,7 +12,7 @@ Este proyecto es un sistema de votación descentralizado para una comunidad, imp
 - **React**: Biblioteca de JavaScript para construir la interfaz de usuario.
 - **Web3.js**: Biblioteca para interactuar con nodos Ethereum desde el navegador.
 - **Material-UI**: Biblioteca de componentes React para un diseño de interfaz moderno y responsive.
-## Instalación de ambiente de desarroll
+## Instalación de ambiente de desarrollo en Ubuntu 22.04
 ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$ 
 
 truffle --version
@@ -46,6 +46,14 @@ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install nodejs
 node -v
 npm -v
+#Install
+sudo npm install -g truffle
+sudo npm install -g truffle dashboard
+truffle --version
+
+# Installa Git
+   31  sudo apt-get install git
+
 ```
 
 ## Smart Contract
