@@ -48,6 +48,19 @@ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install nodejs
 node -v
 npm -v
+#Install truffle
+sudo npm install -g truffle
+sudo npm install -g truffle dashboard
+truffle --version
+
+#Install Ganche
+wget https://github.com/trufflesuite/ganache-ui/releases/download/v2.7.1/ganache-2.7.1-linux-x86_64.AppImage 
+sudo add-apt-repository universe
+sudo apt install libfuse2
+
+# Install OpenZeppelin
+npm install @openzeppelin/contracts
+
 ```
 
 ## Smart Contract
