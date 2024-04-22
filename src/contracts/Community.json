@@ -141,7 +141,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -154,7 +155,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -167,7 +169,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -180,7 +183,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -204,7 +208,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -223,7 +228,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -236,7 +242,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -249,7 +256,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -278,7 +286,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -18243,12 +18252,13 @@
         }
       },
       "links": {},
-      "address": "0xC3Da7d7A9Dd20B8f67628E8d3c0D63D58cC97875",
-      "transactionHash": "0x55e788324822363db7b8136531ff5f5bdcf37f071b2c8f0f4f67cc30bcf4740b"
+      "address": "0x785850B380B5d183f7e50159122F175A06A7aD46",
+      "transactionHash": "0x53a94e95ca2750e9db2bf1c087bc33df2ef1921c0b90b907e56cbb63f0e9e859"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-04-22T00:44:34.685Z",
+  "updatedAt": "2024-04-22T00:56:34.542Z",
+  "networkType": "ethereum",
   "devdoc": {
     "errors": {
       "OwnableInvalidOwner(address)": [

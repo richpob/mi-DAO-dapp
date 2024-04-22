@@ -58,8 +58,18 @@ wget https://github.com/trufflesuite/ganache-ui/releases/download/v2.7.1/ganache
 sudo add-apt-repository universe
 sudo apt install libfuse2
 
-# Install OpenZeppelin
+# Install library : OpenZeppelin; MAterial UI: otras
 npm install @openzeppelin/contracts
+npm install @material-ui/core
+npm install react-error-boundary
+npm install web3
+
+
+# Install react en proyecto
+npx create-react-app mi-dao-dapp
+
+# Secret Phase Metamask Demo
+vapor order lion moon leave voyage worry call luxury section loyal multiply
 
 ```
 
