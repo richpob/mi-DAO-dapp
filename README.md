@@ -13,8 +13,22 @@ Este proyecto es un sistema de votación descentralizado para una comunidad, imp
 - **Web3.js**: Biblioteca para interactuar con nodos Ethereum desde el navegador.
 - **Material-UI**: Biblioteca de componentes React para un diseño de interfaz moderno y responsive.
 ## Instalación de ambiente de desarrollo en Ubuntu 22.04
-ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$ 
 
+los pasos para configurar un entorno de desarrollo completo para el desarrollo de aplicaciones descentralizadas (DApps) sobre la blockchain en Ubuntu. La infraestructura creada se puede desglosar en varias partes:
+
+1.  Herramientas de desarrollo y versionado: Instalación de Git y GitHub Desktop para manejo de versiones y colaboración en proyectos de código.
+2.  Editores de código: Instalación de Visual Studio Code (VS Code), un editor de texto optimizado para el desarrollo de software.
+3.  Entorno de ejecución de JavaScript y gestión de paquetes: Instalación de Node.js (versión LTS) y npm, herramientas esenciales para la ejecución de scripts JavaScript fuera del navegador y la gestión de bibliotecas de JavaScript.
+4.  Herramientas de desarrollo de contratos inteligentes: Instalación de Truffle y Ganache, que son herramientas para la compilación, migración y prueba de contratos inteligentes en entornos de desarrollo local.
+5.  Bibliotecas y frameworks para el desarrollo DApp: Instalación de OpenZeppelin (para contratos inteligentes seguros), Material-UI y MUI (para interfaces de usuario en React), y otras librerías necesarias para el diseño y funcionalidad de DApps.
+6.  Creación de una aplicación React: Utilización de Create React App para establecer la base de una aplicación web que interactuará con la blockchain.
+7.  Entorno y herramientas para la verificación y despliegue de contratos: Configuración de plugins y herramientas para la verificación de contratos en redes blockchain públicas, gestión de wallets y variables de entorno.
+8.  Hosting descentralizado: Preparativos para el despliegue de la aplicación en un entorno descentralizado, implicando la construcción de la aplicación para producción.
+
+Esta infraestructura permite el desarrollo, prueba, y despliegue de aplicaciones descentralizadas, integrando herramientas modernas de desarrollo web con tecnologías específicas de blockchain.
+
+## Principales versiones de software
+Folder de proyecto: ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$ 
 truffle --version
 Truffle v5.11.5 (core: 5.11.5)
 Ganache v7.9.1
@@ -22,7 +36,8 @@ Solidity - 0.8.20 (solc-js)
 Node v20.12.2
 Web3.js v1.10.0
 
-```bas
+## Instrucciones para recrear el ambiente
+```bash
 # Install Github Desktop & Git
 sudo apt-get update
 sudo apt-get install git
