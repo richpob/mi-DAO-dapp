@@ -103,12 +103,8 @@ npm run build
 ```
 
 ## Smart Contract
-Smart Contract desde Truffle dashboard a Sepolia TestNet https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b
-
-El contrato está desplegado en la dirección: [0x055e3df582b840a19b583d04c4e85225939fb303](https://sepolia.etherscan.io/address/0x055e3df582b840a19b583d04c4e85225939fb303#readContract) en la red de prueba Sepolia.
-
-![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/3d6db9ee-3187-4e57-9b15-1edb019748dd)
-
+Smart Contract desde Truffle dashboard a Sepolia TestNet
+**El contrato está desplegado en la dirección:**[https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b](https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b)
 
 ### Funcionalidades del Contrato
 - **Registro de miembros**: Los miembros pueden registrarse almacenando una cantidad de tokens que les permitirá votar.
