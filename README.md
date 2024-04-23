@@ -112,7 +112,7 @@ Smart Contract desde Truffle dashboard a Sepolia TestNet
 - **Votación**: Los miembros utilizan sus tokens para votar en propuestas activas.
 - **Ejecución de propuestas**: Las propuestas que alcanzan los votos necesarios pueden ser ejecutadas por los administradores.
 
-### Métodos Principales
+### Métodos Principales y componentes de despliegue y validación
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
@@ -191,6 +191,16 @@ contract Community is Ownable(msg.sender) {
     }
 }
 ```
+### Ganache Dashboard
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/f91cd3c1-a526-4e8f-8cf0-db4b433dc2e4)
+
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/ef3f0cf9-9462-492c-9d10-4f80f3c8e7bc)
+
+### Despliegue desde VS Code a Sepolia TestNet
+
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/2b2ca7f7-449c-449a-b7bd-d532a482491f)
+
+
 ## Contrato de la Comunidad
 
 ### Descripción General
