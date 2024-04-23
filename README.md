@@ -28,13 +28,13 @@ los pasos para configurar un entorno de desarrollo completo para el desarrollo d
 Esta infraestructura permite el desarrollo, prueba, y despliegue de aplicaciones descentralizadas, integrando herramientas modernas de desarrollo web con tecnologías específicas de blockchain.
 
 ## Principales versiones de software
-Folder de proyecto: ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$ 
-truffle --version
-Truffle v5.11.5 (core: 5.11.5)
-Ganache v7.9.1
-Solidity - 0.8.20 (solc-js)
-Node v20.12.2
-Web3.js v1.10.0
+- **Folder de proyecto: ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$** 
+- **truffle --version**
+- **Truffle v5.11.5 (core: 5.11.5)**
+- **Ganache v7.9.1**
+- **Solidity - 0.8.20 (solc-js)**
+- **Node v20.12.2**
+- **Web3.js v1.10.0**
 
 ## Instrucciones para recrear el ambiente
 ```bash
