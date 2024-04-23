@@ -28,13 +28,13 @@ los pasos para configurar un entorno de desarrollo completo para el desarrollo d
 Esta infraestructura permite el desarrollo, prueba, y despliegue de aplicaciones descentralizadas, integrando herramientas modernas de desarrollo web con tecnologías específicas de blockchain.
 
 ## Principales versiones de software
-Folder de proyecto: ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$ 
-truffle --version
-Truffle v5.11.5 (core: 5.11.5)
-Ganache v7.9.1
-Solidity - 0.8.20 (solc-js)
-Node v20.12.2
-Web3.js v1.10.0
+- **Folder de proyecto: ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$** 
+- **truffle --version**
+- **Truffle v5.11.5 (core: 5.11.5)**
+- **Ganache v7.9.1**
+- **Solidity - 0.8.20 (solc-js)**
+- **Node v20.12.2**
+- **Web3.js v1.10.0**
 
 ## Instrucciones para recrear el ambiente
 ```bash
@@ -103,12 +103,8 @@ npm run build
 ```
 
 ## Smart Contract
-Smart Contract desde Truffle dashboard a Sepolia TestNet https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b
-
-El contrato está desplegado en la dirección: [0x055e3df582b840a19b583d04c4e85225939fb303](https://sepolia.etherscan.io/address/0x055e3df582b840a19b583d04c4e85225939fb303#readContract) en la red de prueba Sepolia.
-
-![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/3d6db9ee-3187-4e57-9b15-1edb019748dd)
-
+Smart Contract desde Truffle dashboard a Sepolia TestNet
+- **El contrato está desplegado en la dirección:**[https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b](https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b)
 
 ### Funcionalidades del Contrato
 - **Registro de miembros**: Los miembros pueden registrarse almacenando una cantidad de tokens que les permitirá votar.
@@ -116,7 +112,7 @@ El contrato está desplegado en la dirección: [0x055e3df582b840a19b583d04c4e852
 - **Votación**: Los miembros utilizan sus tokens para votar en propuestas activas.
 - **Ejecución de propuestas**: Las propuestas que alcanzan los votos necesarios pueden ser ejecutadas por los administradores.
 
-### Métodos Principales
+### Métodos Principales y componentes de despliegue y validación
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
@@ -195,6 +191,16 @@ contract Community is Ownable(msg.sender) {
     }
 }
 ```
+### Ganache Dashboard
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/f91cd3c1-a526-4e8f-8cf0-db4b433dc2e4)
+
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/ef3f0cf9-9462-492c-9d10-4f80f3c8e7bc)
+
+### Despliegue desde VS Code a Sepolia TestNet
+
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/2b2ca7f7-449c-449a-b7bd-d532a482491f)
+
+
 ## Contrato de la Comunidad
 
 ### Descripción General
@@ -240,7 +246,7 @@ constructor(string memory _name, string memory _address, string memory _presiden
     creationDate = _creationDate;
 }
 ```
-#### Funciones del Contrato
+#### Funciones del Contrato, pantallas y pasos
 **registerMember**: Asigna tokens a un nuevo miembro. Solo puede ser llamada por el propietario.
 **createProposal**: Crea una nueva propuesta. Solo puede ser iniciada por el propietario.
 **voteOnProposal**: Permite a los miembros votar en propuestas activas.
@@ -249,7 +255,25 @@ constructor(string memory _name, string memory _address, string memory _presiden
 ## Frontend
 El frontend está desarrollado en React y utiliza Web3.js para interactuar con el contrato inteligente a través de MetaMask.
 
-![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/369d8df2-02f5-4eab-a17a-e7fae0152c1d)
+- **Pagina Inicio**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/36187c01-f0f5-4cd4-abdc-6c478c77c724)
+- **Menú**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/b6b84600-e07b-4540-b4d4-bc08f8edbfc3)
+- **Incorporación de un miembro para votar**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/1d345abc-16a2-4cda-8d98-ace2eb5e382e)
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/9a94f3dd-603a-4062-a0e5-f258d5b11b04)
+- **Creación de votación**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/dd5122c5-76e5-4c19-80f4-2410e313e99d)
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/391cb058-dcee-4004-99d7-cf4b572dbf0d)
+
+- **Habilitación Manual de Proposal**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/1899d3c1-6512-4c02-a15d-5b6f54fddf2b)
+
+- **Votación**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/f71cc639-9c6d-4e23-bc5e-710b22e3a802)
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/c5fd850b-afbe-4f25-b174-11cfe3e30812)
+
+
 
 ### Componentes Principales
 Formulario de Registro de Miembro: Permite a los usuarios registrarse como miembros.
@@ -257,15 +281,15 @@ Creador de Propuestas: Interfaz para que los administradores creen nuevas propue
 Votaciones: Permite a los miembros votar en propuestas activas.
 
 ### Fuentes de los Componentes
-```js
-import React, { useState, useEffect } from 'react';
+```javascript
+import React, { useState, useEffect, useCallback } from 'react';
 import Web3 from 'web3';
-import { TextField, Button, CircularProgress, Typography, Container, Box } from '@mui/material';
+import { ErrorBoundary } from 'react-error-boundary';
+import { TextField, Button, CircularProgress, Typography, Container, Box, Menu, MenuItem, IconButton } from '@mui/material';
+import { abi, contractAddress } from './App';
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 
-const contractAddress = '0x055e3df582b840a19b583d04c4e85225939fb303';
-const abi = []; // Acá va el ABI del contrato
-
-function App() {
+export function App() {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [accounts, setAccounts] = useState([]);
@@ -275,6 +299,49 @@ function App() {
   const [member, setMember] = useState('');
   const [tokens, setTokens] = useState('');
   const [loading, setLoading] = useState(false);
+  const [currentAccount, setCurrentAccount] = useState('');
+  const [currentNetwork, setCurrentNetwork] = useState('');
+  const [members, setMembers] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [showMembersList, setShowMembersList] = useState(false);
+  const [proposalDetails, setProposalDetails] = useState('');
+  const [proposalId, setProposalId] = useState(''); // State for proposalId
+  const [votes, setVotes] = useState(''); // State for votes
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMenuItemClick = (option) => {
+    setSelectedOption(option);
+    handleMenuClose();
+    if (option === "Listar miembros de la comunidad") {
+      setShowMembersList(true);
+    } else {
+      setShowMembersList(false);
+    }
+  };
+
+  const fetchMembers = useCallback(async () => {
+    try {
+      const totalMembers = await contract.methods.totalMembers().call();
+      const membersData = [];
+
+      for (let i = 0; i < totalMembers; i++) {
+        const memberInfo = await contract.methods.members(i).call();
+        membersData.push(memberInfo);
+      }
+
+      setMembers(membersData);
+    } catch (error) {
+      console.error('Error al obtener los miembros:', error);
+    }
+  }, [contract]);
 
   useEffect(() => {
     async function loadWeb3() {
@@ -295,73 +362,228 @@ function App() {
         setCommunityAddress(communityAddr);
         setCommunityName(communityNm);
       } else {
-        alert('Please install MetaMask!');
+        alert('Por favor, instale MetaMask!');
       }
     }
 
     loadWeb3();
   }, []);
 
-  const registerMember = async () => {
+  useEffect(() => {
+    const onAccountChange = newAccount => {
+      setCurrentAccount(newAccount);
+    };
+
+    const onNetworkChange = newNetwork => {
+      setCurrentNetwork(newNetwork);
+      if (newNetwork !== '0x539') {
+        alert('¡No estás conectado a la red 0x539!');
+      }
+    };
+
+    if (web3) {
+      window.ethereum.on('accountsChanged', onAccountChange);
+      window.ethereum.on('chainChanged', onNetworkChange);
+
+      return () => {
+        window.ethereum.removeListener('accountsChanged', onAccountChange);
+        window.ethereum.removeListener('chainChanged', onNetworkChange);
+      };
+    }
+  }, [web3]);
+
+  useEffect(() => {
+    if (contract) {
+      fetchMembers();
+    }
+  }, [contract, fetchMembers]);
+
+  async function handleFetchMembers() {
+    setLoading(true);
+    await fetchMembers();
+    setLoading(false);
+  }
+
+  async function registerMember() {
     if (!contract || !member || !tokens) {
-      alert('All fields are required');
+      alert('Todos los campos son obligatorios');
       return;
     }
     setLoading(true);
     try {
       await contract.methods.registerMember(member, tokens).send({ from: accounts[0] });
-      alert('Member registered successfully');
+      alert('Miembro registrado exitosamente');
     } catch (error) {
-      console.error('Error registering member:', error);
-      alert('Failed to register member');
+      console.error('Error al registrar el miembro:', error);
+      alert('Error al registrar el miembro');
     } finally {
       setLoading(false);
     }
-  };
+  }
+
+  async function createProposal() {
+    if (!contract) {
+      alert('No se puede crear la consulta sin un contrato.');
+      return;
+    }
+    setLoading(true);
+    try {
+      // Lógica para crear la consulta a votar
+      await contract.methods.createProposal(proposalDetails).send({ from: accounts[0] });
+      alert('Consulta a votar creada exitosamente');
+    } catch (error) {
+      console.error('Error al crear la consulta a votar:', error);
+      alert('Error al crear la consulta a votar');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function voteOnProposal() {
+    if (!contract || !proposalId || !votes) {
+      alert('Todos los campos son obligatorios para votar en la propuesta');
+      return;
+    }
+    setLoading(true);
+    try {
+      // Lógica para votar en la propuesta
+      await contract.methods.voteOnProposal(proposalId, votes).send({ from: accounts[0] });
+      alert('Voto registrado exitosamente');
+    } catch (error) {
+      console.error('Error al votar en la propuesta:', error);
+      alert('Error al votar en la propuesta');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
-    <Container maxWidth="sm">
-      <Typography variant="h4" component="h1" gutterBottom>
-        Community Contract Interaction
-      </Typography>
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="h6">Contract Information</Typography>
-        <Typography><strong>Admin Name:</strong> {adminName}</Typography>
-        <Typography><strong>Community Address:</strong> {communityAddress}</Typography>
-        <Typography><strong>Community Name:</strong> {communityName}</Typography>
-      </Box>
-      <Box>
-        <Typography variant="h6" gutterBottom>Register Member</Typography>
-        <TextField
-          fullWidth
-          label="Member Address"
-          value={member}
-          onChange={e => setMember(e.target.value)}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Tokens"
-          type="number"
-          value={tokens}
-          onChange={e => setTokens(e.target.value)}
-          margin="normal"
-        />
-        <Button
-          variant="contained"
+    <ErrorBoundary onError={(error, componentStack) => {
+      console.error('Error RPC:', error);
+      alert('Se produjo un error al realizar una llamada RPC. Por favor, inténtelo de nuevo más tarde.');
+    }}>
+      <Container maxWidth="sm">
+        <IconButton
+          aria-controls="menu"
+          aria-haspopup="true"
+          onClick={handleMenuOpen}
+          size="large"
           color="primary"
-          onClick={registerMember}
-          disabled={loading}
-          fullWidth
         >
-          {loading ? <CircularProgress size={24} /> : 'Register Member'}
-        </Button>
-      </Box>
-    </Container>
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          id="menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={() => handleMenuItemClick("Crear Consulta a Votar")}>Opción 1: Crear Consulta a Votar</MenuItem>
+          <MenuItem onClick={() => handleMenuItemClick("Realizar Votación")}>Opción 2: Realizar Votación</MenuItem>
+          <MenuItem onClick={() => handleMenuItemClick("Ingreso de miembros de la comunidad")}>Opcion 4: Ingreso de miembros de la comunidad</MenuItem>
+        </Menu>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Sistema de Votación de Comunidades
+        </Typography>
+        <Box sx={{ mb: 2, border: '1px solid black', padding: '10px', marginTop: '20px' }}>
+          <Typography variant="h6" gutterBottom>Información de la Red Ethereum y Cuentas</Typography>
+          {Object.entries(currentAccount).map(([key, value]) => (
+            <Typography key={key}>{`${key}: ${value}`}</Typography>
+          ))}
+          <Typography>Red Actual: {currentNetwork}</Typography>
+        </Box>
+        <Box sx={{ mb: 2, border: '1px solid black', padding: '10px' }}>
+          <Typography variant="h6">Información del Contrato</Typography>
+          <Typography><strong>Administrador:</strong> {adminName}</Typography>
+          <Typography><strong>Dirección:</strong> {communityAddress}</Typography>
+          <Typography><strong>Nombre de la Comunidad:</strong> {communityName}</Typography>
+        </Box>
+        {showMembersList && (
+          <Box sx={{ border: '1px solid black', padding: '10px', marginTop: '20px' }}>
+            <Typography variant="h6" gutterBottom>Miembros Registrados</Typography>
+            {/* Lista de miembros */}
+          </Box>
+        )}
+        {selectedOption === "Ingreso de miembros de la comunidad" && (
+          <Box sx={{ border: '1px solid black', padding: '10px', marginTop: '20px' }}>
+            <Typography variant="h6" gutterBottom>Registro de Miembros</Typography>
+            <TextField
+              fullWidth
+              label="Dirección del Miembro"
+              value={member}
+              onChange={e => setMember(e.target.value)}
+              margin="normal" />
+            <TextField
+              fullWidth
+              label="Tokens"
+              type="number"
+              value={tokens}
+              onChange={e => setTokens(e.target.value)}
+              margin="normal" />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={registerMember}
+              disabled={loading}
+              fullWidth
+            >
+              {loading ? <CircularProgress size={24} /> : 'Guardar Propietario'}
+            </Button>
+          </Box>
+        )}
+        {selectedOption === "Crear Consulta a Votar" && (
+          <Box sx={{ border: '1px solid black', padding: '10px', marginTop: '20px' }}>
+            <Typography variant="h6" gutterBottom>Crear Consulta a Votar</Typography>
+            <TextField
+              fullWidth
+              label="Detalles de la Propuesta"
+              value={proposalDetails}
+              onChange={e => setProposalDetails(e.target.value)}
+              margin="normal" />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={createProposal}
+              disabled={loading}
+              fullWidth
+            >
+              {loading ? <CircularProgress size={24} /> : 'Crear Consulta'}
+            </Button>
+          </Box>
+        )}
+        {selectedOption === "Realizar Votación" && (
+          <Box sx={{ border: '1px solid black', padding: '10px', marginTop: '20px' }}>
+            <Typography variant="h6" gutterBottom>Realizar Votación</Typography>
+            <TextField
+              fullWidth
+              label="ID de la Propuesta"
+              type="number"
+              value={proposalId}
+              onChange={e => setProposalId(e.target.value)}
+              margin="normal" />
+            <TextField
+              fullWidth
+              label="Votos"
+              type="number"
+              value={votes}
+              onChange={e => setVotes(e.target.value)}
+              margin="normal" />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={voteOnProposal}
+              disabled={loading}
+              fullWidth
+            >
+              {loading ? <CircularProgress size={24} /> : 'Votar en la Propuesta'}
+            </Button>
+          </Box>
+        )}
+     </Container>
+    </ErrorBoundary>
   );
 }
 
-export default App;
 ```
 
 ## Interacción con el Contrato de la Comunidad
@@ -405,7 +627,7 @@ Es el componente principal que maneja la conexión con Ethereum y muestra la int
 - `tokens`: Número de tokens a asignar al nuevo miembro.
 - `loading`: Estado para controlar la visualización del indicador de carga durante las transacciones.
 
-#### Hook `useEffect`
+#### Hook `useEffect` de ejemplo
 
 Inicializa la conexión con MetaMask y carga los datos iniciales desde el contrato:
 
@@ -458,28 +680,10 @@ const registerMember = async () => {
 
 ```
 ### Mejoras Futuras
-**Manejo avanzado de errores**: Proporcionar retroalimentación más detallada sobre los errores de blockchain.
+**Manejo avanzado de errores**: Proporcionar retroalimentación más detallada sobre los errores de blockchain. OK
 **Actualizaciones en tiempo real**: Implementar WebSocket u otra tecnología para obtener actualizaciones en tiempo real del estado del contrato.
 **Accesibilidad mejorada:** Asegurar que la interfaz cumpla con los estándares de accesibilidad.
-
-### Instalación y Configuración
-Para ejecutar este proyecto localmente, necesitarás instalar las dependencias y configurar MetaMask en tu navegador.
-
-### Prerrequisitos
-Node.js
-npm o yarn
-MetaMask instalado en tu navegador
-### Pasos para la Instalación
-Clona el repositorio.
-Instala las dependencias:
-
-```bash
-npm install
-npm start
-
-```
-### Uso de VS Code y GitHub
-![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/be280fea-4ce9-41ba-b469-8bf2c9e0e5b1)
+**Completar otras funciones del contrato:** Pendientes funcionalidades del Smart Contrat y mejoras en la usabilidad de cara al usuario.
 
 ## Licencia
 Este proyecto está bajo la Licencia MIT.

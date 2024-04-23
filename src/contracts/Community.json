@@ -18256,14 +18256,91 @@
       "transactionHash": "0x53a94e95ca2750e9db2bf1c087bc33df2ef1921c0b90b907e56cbb63f0e9e859"
     },
     "11155111": {
-      "events": {},
+      "events": {
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x9c770c289ab5bf7e57cb1d23c8ceae993aea46eb64847072fd3d78ca60d3e432": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "proposalId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            }
+          ],
+          "name": "ProposalCreated",
+          "type": "event"
+        },
+        "0x712ae1383f79ac853f8d882153778e0260ef8f03b504e2866e0593e04d2b291f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "proposalId",
+              "type": "uint256"
+            }
+          ],
+          "name": "ProposalExecuted",
+          "type": "event"
+        },
+        "0x2dc7503cab0c8e53a50e982257f234b59eb2aff2d39dea8763e479a48f3bb22e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "proposalId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "votes",
+              "type": "uint256"
+            }
+          ],
+          "name": "VoteReceived",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x5b244dDAC206f403430FAF50e950B8cFABc8Ec3B",
-      "transactionHash": "0x6a75b2b79e751a4acc97202be63157f3566c2a42f74bb8302af36839b849e73d"
+      "address": "0x8bA9A7332c967abfeb791912315898a95D3c2DDa",
+      "transactionHash": "0xcfefc8e2290b85a2cf6659c98b12310d0b4ee1ddd9d7b0b74148a5715761712c"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-04-22T17:01:49.915Z",
+  "updatedAt": "2024-04-23T23:26:51.624Z",
   "networkType": "ethereum",
   "devdoc": {
     "errors": {
