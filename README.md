@@ -81,9 +81,9 @@ truffle run verify <ContractName> --network <NetworkName>
 touch .env
 npm install dotenv
 
+# Hosting Descentralizado 
+npm run build
 
-# Secret Phase Metamask Demo
-vapor order lion moon leave voyage worry call luxury section loyal multiply
 
 ```
 
