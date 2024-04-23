@@ -683,6 +683,7 @@ const registerMember = async () => {
 **Manejo avanzado de errores**: Proporcionar retroalimentación más detallada sobre los errores de blockchain. OK
 **Actualizaciones en tiempo real**: Implementar WebSocket u otra tecnología para obtener actualizaciones en tiempo real del estado del contrato.
 **Accesibilidad mejorada:** Asegurar que la interfaz cumpla con los estándares de accesibilidad.
+**Completar otras funciones del contrato:** Pendientes funcionalidades del Smart Contrat y mejoras en la usabilidad de cara al usuario.
 
 ## Licencia
 Este proyecto está bajo la Licencia MIT.
