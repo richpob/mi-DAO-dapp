@@ -41,7 +41,13 @@
  * https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/
  */
 
-// require('dotenv').config();
+// truffle-config.js
+require('dotenv').config(); // Carga las variables de entorno desde .env
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+
+//require('dotenv').config();
+
 // const { MNEMONIC, PROJECT_ID } = process.env;
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
@@ -67,6 +73,11 @@ module.exports = {
      ganache: {
       host: "127.0.0.1",     // Localhost (default: none)
       port: 7545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+     },
+     dashboard : {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 24012,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
     //
@@ -138,4 +149,16 @@ module.exports = {
   //     }
   //   }
   // }
+  // truffle-config.js
+
+  // Agrega el plugin a la lista de plugins
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+
+  // Configura las opciones del plugin
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API_KEY // Accede a la API key desde la variable de entorno 
+  }
+
 };

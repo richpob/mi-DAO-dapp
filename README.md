@@ -61,6 +61,9 @@ sudo apt install libfuse2
 # Install library : OpenZeppelin; MAterial UI: otras
 npm install @openzeppelin/contracts
 npm install @material-ui/core
+npm install @mui/material @emotion/react @emotion/styled //import MoreVertIcon from '@mui/icons-material/MoreVert'
+npm install @mui/icons-material
+
 npm install react-error-boundary
 npm install web3
 
@@ -68,12 +71,24 @@ npm install web3
 # Install react en proyecto
 npx create-react-app mi-dao-dapp
 
+#Install pluggins verufy
+npm install @truffle/dashboard
+npm install -D truffle-plugin-verify
+npm install @truffle/hdwallet-provider
+truffle run verify <ContractName> --network <NetworkName>
+
+#Creación de fichero de variables de entorno
+touch .env
+npm install dotenv
+
+
 # Secret Phase Metamask Demo
 vapor order lion moon leave voyage worry call luxury section loyal multiply
 
 ```
 
 ## Smart Contract
+Smart Contract desde Truffle dashboard a Sepolia TestNet https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b
 
 El contrato está desplegado en la dirección: [0x055e3df582b840a19b583d04c4e85225939fb303](https://sepolia.etherscan.io/address/0x055e3df582b840a19b583d04c4e85225939fb303#readContract) en la red de prueba Sepolia.
 
