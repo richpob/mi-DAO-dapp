@@ -260,7 +260,6 @@ El frontend está desarrollado en React y utiliza Web3.js para interactuar con e
 - **Menú**
 - ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/b6b84600-e07b-4540-b4d4-bc08f8edbfc3)
 - **Incorporación de un miembro para votar**
-- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/1ed57c9e-f453-43ba-acee-bf3f18546cce)
 - ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/1d345abc-16a2-4cda-8d98-ace2eb5e382e)
 - ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/9a94f3dd-603a-4062-a0e5-f258d5b11b04)
 - **Creación de votación**
