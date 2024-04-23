@@ -246,7 +246,7 @@ constructor(string memory _name, string memory _address, string memory _presiden
     creationDate = _creationDate;
 }
 ```
-#### Funciones del Contrato
+#### Funciones del Contrato, pantallas y pasos
 **registerMember**: Asigna tokens a un nuevo miembro. Solo puede ser llamada por el propietario.
 **createProposal**: Crea una nueva propuesta. Solo puede ser iniciada por el propietario.
 **voteOnProposal**: Permite a los miembros votar en propuestas activas.
@@ -255,7 +255,28 @@ constructor(string memory _name, string memory _address, string memory _presiden
 ## Frontend
 El frontend está desarrollado en React y utiliza Web3.js para interactuar con el contrato inteligente a través de MetaMask.
 
-![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/369d8df2-02f5-4eab-a17a-e7fae0152c1d)
+- **Pagina Inicio**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/36187c01-f0f5-4cd4-abdc-6c478c77c724)
+
+- **Menú**
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/b6b84600-e07b-4540-b4d4-bc08f8edbfc3)
+- **Incorporación de un miembro para votar**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/1ed57c9e-f453-43ba-acee-bf3f18546cce)
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/1d345abc-16a2-4cda-8d98-ace2eb5e382e)
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/9a94f3dd-603a-4062-a0e5-f258d5b11b04)
+- **Creación de votación**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/dd5122c5-76e5-4c19-80f4-2410e313e99d)
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/391cb058-dcee-4004-99d7-cf4b572dbf0d)
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/fa6ae70b-ee60-452b-a2c8-abb7023952c3)
+
+- **Habilitación Manual de Proposal**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/1899d3c1-6512-4c02-a15d-5b6f54fddf2b)
+
+- **Votación**
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/f71cc639-9c6d-4e23-bc5e-710b22e3a802)
+- ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/c5fd850b-afbe-4f25-b174-11cfe3e30812)
+
+
 
 ### Componentes Principales
 Formulario de Registro de Miembro: Permite a los usuarios registrarse como miembros.
@@ -665,25 +686,6 @@ const registerMember = async () => {
 **Manejo avanzado de errores**: Proporcionar retroalimentación más detallada sobre los errores de blockchain. OK
 **Actualizaciones en tiempo real**: Implementar WebSocket u otra tecnología para obtener actualizaciones en tiempo real del estado del contrato.
 **Accesibilidad mejorada:** Asegurar que la interfaz cumpla con los estándares de accesibilidad.
-
-### Instalación y Configuración
-Para ejecutar este proyecto localmente, necesitarás instalar las dependencias y configurar MetaMask en tu navegador.
-
-### Prerrequisitos
-Node.js
-npm o yarn
-MetaMask instalado en tu navegador
-### Pasos para la Instalación
-Clona el repositorio.
-Instala las dependencias:
-
-```bash
-npm install
-npm start
-
-```
-### Uso de VS Code y GitHub
-![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/be280fea-4ce9-41ba-b469-8bf2c9e0e5b1)
 
 ## Licencia
 Este proyecto está bajo la Licencia MIT.
