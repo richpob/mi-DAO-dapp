@@ -365,7 +365,7 @@ code {
           : 'default'
     });
   </script>
-<h1 id="sistema-de-votaci%C3%B3n-para-una-comunidad">Sistema de Votación para una Comunidad</h1>
+<h1 id="sistema-de-votaci%C3%B3n-para-una-comunidad-sprint-3">Sistema de Votación para una Comunidad Sprint 3</h1>
 <h2 id="descripci%C3%B3n">Descripción</h2>
 <p>Este proyecto es un sistema de votación descentralizado para una comunidad, implementado utilizando un smart contract en Ethereum y una interfaz de usuario desarrollada en React. Permite a los miembros registrados votar en propuestas y ver los resultados de las votaciones de manera transparente y segura.</p>
 <h2 id="tecnolog%C3%ADas-utilizadas">Tecnologías Utilizadas</h2>
@@ -379,9 +379,98 @@ code {
 <li><strong>Web3.js</strong>: Biblioteca para interactuar con nodos Ethereum desde el navegador.</li>
 <li><strong>Material-UI</strong>: Biblioteca de componentes React para un diseño de interfaz moderno y responsive.</li>
 </ul>
+<h2 id="instalaci%C3%B3n-de-ambiente-de-desarrollo-en-ubuntu-2204">Instalación de ambiente de desarrollo en Ubuntu 22.04</h2>
+<p>los pasos para configurar un entorno de desarrollo completo para el desarrollo de aplicaciones descentralizadas (DApps) sobre la blockchain en Ubuntu. La infraestructura creada se puede desglosar en varias partes:</p>
+<ol>
+<li>Herramientas de desarrollo y versionado: Instalación de Git y GitHub Desktop para manejo de versiones y colaboración en proyectos de código.</li>
+<li>Editores de código: Instalación de Visual Studio Code (VS Code), un editor de texto optimizado para el desarrollo de software.</li>
+<li>Entorno de ejecución de JavaScript y gestión de paquetes: Instalación de Node.js (versión LTS) y npm, herramientas esenciales para la ejecución de scripts JavaScript fuera del navegador y la gestión de bibliotecas de JavaScript.</li>
+<li>Herramientas de desarrollo de contratos inteligentes: Instalación de Truffle y Ganache, que son herramientas para la compilación, migración y prueba de contratos inteligentes en entornos de desarrollo local.</li>
+<li>Bibliotecas y frameworks para el desarrollo DApp: Instalación de OpenZeppelin (para contratos inteligentes seguros), Material-UI y MUI (para interfaces de usuario en React), y otras librerías necesarias para el diseño y funcionalidad de DApps.</li>
+<li>Creación de una aplicación React: Utilización de Create React App para establecer la base de una aplicación web que interactuará con la blockchain.</li>
+<li>Entorno y herramientas para la verificación y despliegue de contratos: Configuración de plugins y herramientas para la verificación de contratos en redes blockchain públicas, gestión de wallets y variables de entorno.</li>
+<li>Hosting descentralizado: Preparativos para el despliegue de la aplicación en un entorno descentralizado, implicando la construcción de la aplicación para producción.</li>
+</ol>
+<p>Esta infraestructura permite el desarrollo, prueba, y despliegue de aplicaciones descentralizadas, integrando herramientas modernas de desarrollo web con tecnologías específicas de blockchain.</p>
+<h2 id="principales-versiones-de-software">Principales versiones de software</h2>
+<ul>
+<li><strong>Folder de proyecto: ubuntu@ubuntu:~/Documents/GitHub/DAOCommunity$</strong></li>
+<li><strong>truffle --version</strong></li>
+<li><strong>Truffle v5.11.5 (core: 5.11.5)</strong></li>
+<li><strong>Ganache v7.9.1</strong></li>
+<li><strong>Solidity - 0.8.20 (solc-js)</strong></li>
+<li><strong>Node v20.12.2</strong></li>
+<li><strong>Web3.js v1.10.0</strong></li>
+</ul>
+<h2 id="instrucciones-para-recrear-el-ambiente">Instrucciones para recrear el ambiente</h2>
+<pre class="hljs"><code><div><span class="hljs-comment"># Install Github Desktop &amp; Git</span>
+sudo apt-get update
+sudo apt-get install git
+
+wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg &gt; /dev/null
+sudo sh -c <span class="hljs-string">'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" &gt; /etc/apt/sources.list.d/shiftkey-packages.list'</span>
+sudo apt update &amp;&amp; sudo apt install github-desktop
+<span class="hljs-comment"># Install VS Code</span>
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c <span class="hljs-string">'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" &gt; /etc/apt/sources.list.d/vscode.list'</span>
+rm -f packages.microsoft.gpg
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code
+<span class="hljs-comment"># Install nodejs LTS</span>
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install curl
+sudo apt-get update
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install nodejs
+node -v
+npm -v
+<span class="hljs-comment">#Install truffle</span>
+sudo npm install -g truffle
+sudo npm install -g truffle dashboard
+truffle --version
+
+<span class="hljs-comment">#Install Ganche</span>
+wget https://github.com/trufflesuite/ganache-ui/releases/download/v2.7.1/ganache-2.7.1-linux-x86_64.AppImage 
+sudo add-apt-repository universe
+sudo apt install libfuse2
+
+<span class="hljs-comment"># Install library : OpenZeppelin; MAterial UI: otras</span>
+npm install @openzeppelin/contracts
+npm install @material-ui/core
+npm install @mui/material @emotion/react @emotion/styled //import MoreVertIcon from <span class="hljs-string">'@mui/icons-material/MoreVert'</span>
+npm install @mui/icons-material
+
+npm install react-error-boundary
+npm install web3
+
+
+<span class="hljs-comment"># Install react en proyecto</span>
+npx create-react-app mi-dao-dapp
+
+<span class="hljs-comment">#Install pluggins verufy</span>
+npm install @truffle/dashboard
+npm install -D truffle-plugin-verify
+npm install @truffle/hdwallet-provider
+truffle run verify &lt;ContractName&gt; --network &lt;NetworkName&gt;
+
+<span class="hljs-comment">#Creación de fichero de variables de entorno</span>
+touch .env
+npm install dotenv
+
+<span class="hljs-comment"># Hosting Descentralizado </span>
+npm run build
+
+
+</div></code></pre>
 <h2 id="smart-contract">Smart Contract</h2>
-<p>El contrato está desplegado en la dirección: <a href="https://sepolia.etherscan.io/address/0x055e3df582b840a19b583d04c4e85225939fb303#readContract">0x055e3df582b840a19b583d04c4e85225939fb303</a> en la red de prueba Sepolia.</p>
-<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/3d6db9ee-3187-4e57-9b15-1edb019748dd" alt="image"></p>
+<p>Smart Contract desde Truffle dashboard a Sepolia TestNet</p>
+<ul>
+<li><strong>El contrato está desplegado en la dirección:</strong><a href="https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b">https://sepolia.etherscan.io/address/0x5b244ddac206f403430faf50e950b8cfabc8ec3b</a></li>
+</ul>
 <h3 id="funcionalidades-del-contrato">Funcionalidades del Contrato</h3>
 <ul>
 <li><strong>Registro de miembros</strong>: Los miembros pueden registrarse almacenando una cantidad de tokens que les permitirá votar.</li>
@@ -389,7 +478,7 @@ code {
 <li><strong>Votación</strong>: Los miembros utilizan sus tokens para votar en propuestas activas.</li>
 <li><strong>Ejecución de propuestas</strong>: Las propuestas que alcanzan los votos necesarios pueden ser ejecutadas por los administradores.</li>
 </ul>
-<h3 id="m%C3%A9todos-principales">Métodos Principales</h3>
+<h3 id="m%C3%A9todos-principales-y-componentes-de-despliegue-y-validaci%C3%B3n">Métodos Principales y componentes de despliegue y validación</h3>
 <pre class="hljs"><code><div>// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -467,6 +556,11 @@ contract Community is Ownable(msg.sender) {
     }
 }
 </div></code></pre>
+<h3 id="ganache-dashboard">Ganache Dashboard</h3>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/f91cd3c1-a526-4e8f-8cf0-db4b433dc2e4" alt="image"></p>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/ef3f0cf9-9462-492c-9d10-4f80f3c8e7bc" alt="image"></p>
+<h3 id="despliegue-desde-vs-code-a-sepolia-testnet">Despliegue desde VS Code a Sepolia TestNet</h3>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/2b2ca7f7-449c-449a-b7bd-d532a482491f" alt="image"></p>
 <h2 id="contrato-de-la-comunidad">Contrato de la Comunidad</h2>
 <h3 id="descripci%C3%B3n-general">Descripción General</h3>
 <p>Este contrato inteligente, desarrollado con Solidity, permite la gestión de una comunidad mediante la asignación de tokens de votación a sus miembros y la creación y votación de propuestas. Está diseñado para ser administrado por el propietario del contrato, quien tiene derechos exclusivos para ciertas operaciones.</p>
@@ -510,27 +604,73 @@ Inicializa el contrato con datos básicos de la comunidad y establece el propiet
     creationDate = _creationDate;
 }
 </div></code></pre>
-<h4 id="funciones-del-contrato">Funciones del Contrato</h4>
+<h4 id="funciones-del-contrato-pantallas-y-pasos">Funciones del Contrato, pantallas y pasos</h4>
 <p><strong>registerMember</strong>: Asigna tokens a un nuevo miembro. Solo puede ser llamada por el propietario.
 <strong>createProposal</strong>: Crea una nueva propuesta. Solo puede ser iniciada por el propietario.
 <strong>voteOnProposal</strong>: Permite a los miembros votar en propuestas activas.
 <strong>executeProposal</strong>: Ejecuta una propuesta aprobada. Solo el propietario puede ejecutarla.</p>
 <h2 id="frontend">Frontend</h2>
 <p>El frontend está desarrollado en React y utiliza Web3.js para interactuar con el contrato inteligente a través de MetaMask.</p>
-<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/369d8df2-02f5-4eab-a17a-e7fae0152c1d" alt="image"></p>
+<ul>
+<li>
+<p><strong>Pagina Inicio</strong></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/36187c01-f0f5-4cd4-abdc-6c478c77c724" alt="image"></p>
+</li>
+<li>
+<p><strong>Menú</strong></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/b6b84600-e07b-4540-b4d4-bc08f8edbfc3" alt="image"></p>
+</li>
+<li>
+<p><strong>Incorporación de un miembro para votar</strong></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/1d345abc-16a2-4cda-8d98-ace2eb5e382e" alt="image"></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/9a94f3dd-603a-4062-a0e5-f258d5b11b04" alt="image"></p>
+</li>
+<li>
+<p><strong>Creación de votación</strong></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/dd5122c5-76e5-4c19-80f4-2410e313e99d" alt="image"></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/391cb058-dcee-4004-99d7-cf4b572dbf0d" alt="image"></p>
+</li>
+<li>
+<p><strong>Habilitación Manual de Proposal</strong></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/1899d3c1-6512-4c02-a15d-5b6f54fddf2b" alt="image"></p>
+</li>
+<li>
+<p><strong>Votación</strong></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/f71cc639-9c6d-4e23-bc5e-710b22e3a802" alt="image"></p>
+</li>
+<li>
+<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/c5fd850b-afbe-4f25-b174-11cfe3e30812" alt="image"></p>
+</li>
+</ul>
 <h3 id="componentes-principales">Componentes Principales</h3>
 <p>Formulario de Registro de Miembro: Permite a los usuarios registrarse como miembros.
 Creador de Propuestas: Interfaz para que los administradores creen nuevas propuestas.
 Votaciones: Permite a los miembros votar en propuestas activas.</p>
 <h3 id="fuentes-de-los-componentes">Fuentes de los Componentes</h3>
-<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState, useEffect, useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> Web3 <span class="hljs-keyword">from</span> <span class="hljs-string">'web3'</span>;
-<span class="hljs-keyword">import</span> { TextField, Button, CircularProgress, Typography, Container, Box } <span class="hljs-keyword">from</span> <span class="hljs-string">'@mui/material'</span>;
+<span class="hljs-keyword">import</span> { ErrorBoundary } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-error-boundary'</span>;
+<span class="hljs-keyword">import</span> { TextField, Button, CircularProgress, Typography, Container, Box, Menu, MenuItem, IconButton } <span class="hljs-keyword">from</span> <span class="hljs-string">'@mui/material'</span>;
+<span class="hljs-keyword">import</span> { abi, contractAddress } <span class="hljs-keyword">from</span> <span class="hljs-string">'./App'</span>;
+<span class="hljs-keyword">import</span> MoreVertIcon <span class="hljs-keyword">from</span> <span class="hljs-string">'@mui/icons-material/MoreVert'</span>
 
-<span class="hljs-keyword">const</span> contractAddress = <span class="hljs-string">'0x055e3df582b840a19b583d04c4e85225939fb303'</span>;
-<span class="hljs-keyword">const</span> abi = []; <span class="hljs-comment">// Acá va el ABI del contrato</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> [web3, setWeb3] = useState(<span class="hljs-literal">null</span>);
   <span class="hljs-keyword">const</span> [contract, setContract] = useState(<span class="hljs-literal">null</span>);
   <span class="hljs-keyword">const</span> [accounts, setAccounts] = useState([]);
@@ -540,6 +680,49 @@ Votaciones: Permite a los miembros votar en propuestas activas.</p>
   <span class="hljs-keyword">const</span> [member, setMember] = useState(<span class="hljs-string">''</span>);
   <span class="hljs-keyword">const</span> [tokens, setTokens] = useState(<span class="hljs-string">''</span>);
   <span class="hljs-keyword">const</span> [loading, setLoading] = useState(<span class="hljs-literal">false</span>);
+  <span class="hljs-keyword">const</span> [currentAccount, setCurrentAccount] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [currentNetwork, setCurrentNetwork] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [members, setMembers] = useState([]);
+  <span class="hljs-keyword">const</span> [anchorEl, setAnchorEl] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [selectedOption, setSelectedOption] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [showMembersList, setShowMembersList] = useState(<span class="hljs-literal">false</span>);
+  <span class="hljs-keyword">const</span> [proposalDetails, setProposalDetails] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [proposalId, setProposalId] = useState(<span class="hljs-string">''</span>); <span class="hljs-comment">// State for proposalId</span>
+  <span class="hljs-keyword">const</span> [votes, setVotes] = useState(<span class="hljs-string">''</span>); <span class="hljs-comment">// State for votes</span>
+
+  <span class="hljs-keyword">const</span> handleMenuOpen = <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
+    setAnchorEl(event.currentTarget);
+  };
+
+  <span class="hljs-keyword">const</span> handleMenuClose = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    setAnchorEl(<span class="hljs-literal">null</span>);
+  };
+
+  <span class="hljs-keyword">const</span> handleMenuItemClick = <span class="hljs-function">(<span class="hljs-params">option</span>) =&gt;</span> {
+    setSelectedOption(option);
+    handleMenuClose();
+    <span class="hljs-keyword">if</span> (option === <span class="hljs-string">"Listar miembros de la comunidad"</span>) {
+      setShowMembersList(<span class="hljs-literal">true</span>);
+    } <span class="hljs-keyword">else</span> {
+      setShowMembersList(<span class="hljs-literal">false</span>);
+    }
+  };
+
+  <span class="hljs-keyword">const</span> fetchMembers = useCallback(<span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> totalMembers = <span class="hljs-keyword">await</span> contract.methods.totalMembers().call();
+      <span class="hljs-keyword">const</span> membersData = [];
+
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; totalMembers; i++) {
+        <span class="hljs-keyword">const</span> memberInfo = <span class="hljs-keyword">await</span> contract.methods.members(i).call();
+        membersData.push(memberInfo);
+      }
+
+      setMembers(membersData);
+    } <span class="hljs-keyword">catch</span> (error) {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Error al obtener los miembros:'</span>, error);
+    }
+  }, [contract]);
 
   useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadWeb3</span>(<span class="hljs-params"></span>) </span>{
@@ -560,73 +743,228 @@ Votaciones: Permite a los miembros votar en propuestas activas.</p>
         setCommunityAddress(communityAddr);
         setCommunityName(communityNm);
       } <span class="hljs-keyword">else</span> {
-        alert(<span class="hljs-string">'Please install MetaMask!'</span>);
+        alert(<span class="hljs-string">'Por favor, instale MetaMask!'</span>);
       }
     }
 
     loadWeb3();
   }, []);
 
-  <span class="hljs-keyword">const</span> registerMember = <span class="hljs-keyword">async</span> () =&gt; {
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> onAccountChange = <span class="hljs-function"><span class="hljs-params">newAccount</span> =&gt;</span> {
+      setCurrentAccount(newAccount);
+    };
+
+    <span class="hljs-keyword">const</span> onNetworkChange = <span class="hljs-function"><span class="hljs-params">newNetwork</span> =&gt;</span> {
+      setCurrentNetwork(newNetwork);
+      <span class="hljs-keyword">if</span> (newNetwork !== <span class="hljs-string">'0x539'</span>) {
+        alert(<span class="hljs-string">'¡No estás conectado a la red 0x539!'</span>);
+      }
+    };
+
+    <span class="hljs-keyword">if</span> (web3) {
+      <span class="hljs-built_in">window</span>.ethereum.on(<span class="hljs-string">'accountsChanged'</span>, onAccountChange);
+      <span class="hljs-built_in">window</span>.ethereum.on(<span class="hljs-string">'chainChanged'</span>, onNetworkChange);
+
+      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-built_in">window</span>.ethereum.removeListener(<span class="hljs-string">'accountsChanged'</span>, onAccountChange);
+        <span class="hljs-built_in">window</span>.ethereum.removeListener(<span class="hljs-string">'chainChanged'</span>, onNetworkChange);
+      };
+    }
+  }, [web3]);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (contract) {
+      fetchMembers();
+    }
+  }, [contract, fetchMembers]);
+
+  <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleFetchMembers</span>(<span class="hljs-params"></span>) </span>{
+    setLoading(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">await</span> fetchMembers();
+    setLoading(<span class="hljs-literal">false</span>);
+  }
+
+  <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">registerMember</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">if</span> (!contract || !member || !tokens) {
-      alert(<span class="hljs-string">'All fields are required'</span>);
+      alert(<span class="hljs-string">'Todos los campos son obligatorios'</span>);
       <span class="hljs-keyword">return</span>;
     }
     setLoading(<span class="hljs-literal">true</span>);
     <span class="hljs-keyword">try</span> {
       <span class="hljs-keyword">await</span> contract.methods.registerMember(member, tokens).send({ <span class="hljs-attr">from</span>: accounts[<span class="hljs-number">0</span>] });
-      alert(<span class="hljs-string">'Member registered successfully'</span>);
+      alert(<span class="hljs-string">'Miembro registrado exitosamente'</span>);
     } <span class="hljs-keyword">catch</span> (error) {
-      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Error registering member:'</span>, error);
-      alert(<span class="hljs-string">'Failed to register member'</span>);
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Error al registrar el miembro:'</span>, error);
+      alert(<span class="hljs-string">'Error al registrar el miembro'</span>);
     } <span class="hljs-keyword">finally</span> {
       setLoading(<span class="hljs-literal">false</span>);
     }
-  };
+  }
+
+  <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createProposal</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (!contract) {
+      alert(<span class="hljs-string">'No se puede crear la consulta sin un contrato.'</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+    setLoading(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-comment">// Lógica para crear la consulta a votar</span>
+      <span class="hljs-keyword">await</span> contract.methods.createProposal(proposalDetails).send({ <span class="hljs-attr">from</span>: accounts[<span class="hljs-number">0</span>] });
+      alert(<span class="hljs-string">'Consulta a votar creada exitosamente'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Error al crear la consulta a votar:'</span>, error);
+      alert(<span class="hljs-string">'Error al crear la consulta a votar'</span>);
+    } <span class="hljs-keyword">finally</span> {
+      setLoading(<span class="hljs-literal">false</span>);
+    }
+  }
+
+  <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">voteOnProposal</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (!contract || !proposalId || !votes) {
+      alert(<span class="hljs-string">'Todos los campos son obligatorios para votar en la propuesta'</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+    setLoading(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-comment">// Lógica para votar en la propuesta</span>
+      <span class="hljs-keyword">await</span> contract.methods.voteOnProposal(proposalId, votes).send({ <span class="hljs-attr">from</span>: accounts[<span class="hljs-number">0</span>] });
+      alert(<span class="hljs-string">'Voto registrado exitosamente'</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'Error al votar en la propuesta:'</span>, error);
+      alert(<span class="hljs-string">'Error al votar en la propuesta'</span>);
+    } <span class="hljs-keyword">finally</span> {
+      setLoading(<span class="hljs-literal">false</span>);
+    }
+  }
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Container</span> <span class="hljs-attr">maxWidth</span>=<span class="hljs-string">"sm"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h4"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">"h1"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>
-        Community Contract Interaction
-      <span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Box</span> <span class="hljs-attr">sx</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">mb:</span> <span class="hljs-attr">2</span> }}&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span>&gt;</span>Contract Information<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Admin Name:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {adminName}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Community Address:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {communityAddress}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Community Name:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {communityName}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Box</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>Register Member<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
-          <span class="hljs-attr">fullWidth</span>
-          <span class="hljs-attr">label</span>=<span class="hljs-string">"Member Address"</span>
-          <span class="hljs-attr">value</span>=<span class="hljs-string">{member}</span>
-          <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setMember(e.target.value)}
-          margin="normal"
-        /&gt;
-        <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
-          <span class="hljs-attr">fullWidth</span>
-          <span class="hljs-attr">label</span>=<span class="hljs-string">"Tokens"</span>
-          <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span>
-          <span class="hljs-attr">value</span>=<span class="hljs-string">{tokens}</span>
-          <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setTokens(e.target.value)}
-          margin="normal"
-        /&gt;
-        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>
-          <span class="hljs-attr">variant</span>=<span class="hljs-string">"contained"</span>
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ErrorBoundary</span> <span class="hljs-attr">onError</span>=<span class="hljs-string">{(error,</span> <span class="hljs-attr">componentStack</span>) =&gt;</span> {
+      console.error('Error RPC:', error);
+      alert('Se produjo un error al realizar una llamada RPC. Por favor, inténtelo de nuevo más tarde.');
+    }}&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">Container</span> <span class="hljs-attr">maxWidth</span>=<span class="hljs-string">"sm"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">IconButton</span>
+          <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"menu"</span>
+          <span class="hljs-attr">aria-haspopup</span>=<span class="hljs-string">"true"</span>
+          <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleMenuOpen}</span>
+          <span class="hljs-attr">size</span>=<span class="hljs-string">"large"</span>
           <span class="hljs-attr">color</span>=<span class="hljs-string">"primary"</span>
-          <span class="hljs-attr">onClick</span>=<span class="hljs-string">{registerMember}</span>
-          <span class="hljs-attr">disabled</span>=<span class="hljs-string">{loading}</span>
-          <span class="hljs-attr">fullWidth</span>
         &gt;</span>
-          {loading ? <span class="hljs-tag">&lt;<span class="hljs-name">CircularProgress</span> <span class="hljs-attr">size</span>=<span class="hljs-string">{24}</span> /&gt;</span> : 'Register Member'}
-        <span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">Container</span>&gt;</span></span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">MoreVertIcon</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">IconButton</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Menu</span>
+          <span class="hljs-attr">id</span>=<span class="hljs-string">"menu"</span>
+          <span class="hljs-attr">anchorEl</span>=<span class="hljs-string">{anchorEl}</span>
+          <span class="hljs-attr">open</span>=<span class="hljs-string">{Boolean(anchorEl)}</span>
+          <span class="hljs-attr">onClose</span>=<span class="hljs-string">{handleMenuClose}</span>
+        &gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">MenuItem</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> handleMenuItemClick("Crear Consulta a Votar")}&gt;Opción 1: Crear Consulta a Votar<span class="hljs-tag">&lt;/<span class="hljs-name">MenuItem</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">MenuItem</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> handleMenuItemClick("Realizar Votación")}&gt;Opción 2: Realizar Votación<span class="hljs-tag">&lt;/<span class="hljs-name">MenuItem</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">MenuItem</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> handleMenuItemClick("Ingreso de miembros de la comunidad")}&gt;Opcion 4: Ingreso de miembros de la comunidad<span class="hljs-tag">&lt;/<span class="hljs-name">MenuItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Menu</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h4"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">"h1"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>
+          Sistema de Votación de Comunidades
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Box</span> <span class="hljs-attr">sx</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">mb:</span> <span class="hljs-attr">2</span>, <span class="hljs-attr">border:</span> '<span class="hljs-attr">1px</span> <span class="hljs-attr">solid</span> <span class="hljs-attr">black</span>', <span class="hljs-attr">padding:</span> '<span class="hljs-attr">10px</span>', <span class="hljs-attr">marginTop:</span> '<span class="hljs-attr">20px</span>' }}&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>Información de la Red Ethereum y Cuentas<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+          {Object.entries(currentAccount).map(([key, value]) =&gt; (
+            <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{key}</span>&gt;</span>{`${key}: ${value}`}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+          ))}
+          <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span>Red Actual: {currentNetwork}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Box</span> <span class="hljs-attr">sx</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">mb:</span> <span class="hljs-attr">2</span>, <span class="hljs-attr">border:</span> '<span class="hljs-attr">1px</span> <span class="hljs-attr">solid</span> <span class="hljs-attr">black</span>', <span class="hljs-attr">padding:</span> '<span class="hljs-attr">10px</span>' }}&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span>&gt;</span>Información del Contrato<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Administrador:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {adminName}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Dirección:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {communityAddress}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Nombre de la Comunidad:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> {communityName}<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
+        {showMembersList &amp;&amp; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">Box</span> <span class="hljs-attr">sx</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">border:</span> '<span class="hljs-attr">1px</span> <span class="hljs-attr">solid</span> <span class="hljs-attr">black</span>', <span class="hljs-attr">padding:</span> '<span class="hljs-attr">10px</span>', <span class="hljs-attr">marginTop:</span> '<span class="hljs-attr">20px</span>' }}&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>Miembros Registrados<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+            {/* Lista de miembros */}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
+        )}
+        {selectedOption === "Ingreso de miembros de la comunidad" &amp;&amp; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">Box</span> <span class="hljs-attr">sx</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">border:</span> '<span class="hljs-attr">1px</span> <span class="hljs-attr">solid</span> <span class="hljs-attr">black</span>', <span class="hljs-attr">padding:</span> '<span class="hljs-attr">10px</span>', <span class="hljs-attr">marginTop:</span> '<span class="hljs-attr">20px</span>' }}&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>Registro de Miembros<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+              <span class="hljs-attr">fullWidth</span>
+              <span class="hljs-attr">label</span>=<span class="hljs-string">"Dirección del Miembro"</span>
+              <span class="hljs-attr">value</span>=<span class="hljs-string">{member}</span>
+              <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setMember(e.target.value)}
+              margin="normal" /&gt;
+            <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+              <span class="hljs-attr">fullWidth</span>
+              <span class="hljs-attr">label</span>=<span class="hljs-string">"Tokens"</span>
+              <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span>
+              <span class="hljs-attr">value</span>=<span class="hljs-string">{tokens}</span>
+              <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setTokens(e.target.value)}
+              margin="normal" /&gt;
+            <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>
+              <span class="hljs-attr">variant</span>=<span class="hljs-string">"contained"</span>
+              <span class="hljs-attr">color</span>=<span class="hljs-string">"primary"</span>
+              <span class="hljs-attr">onClick</span>=<span class="hljs-string">{registerMember}</span>
+              <span class="hljs-attr">disabled</span>=<span class="hljs-string">{loading}</span>
+              <span class="hljs-attr">fullWidth</span>
+            &gt;</span>
+              {loading ? <span class="hljs-tag">&lt;<span class="hljs-name">CircularProgress</span> <span class="hljs-attr">size</span>=<span class="hljs-string">{24}</span> /&gt;</span> : 'Guardar Propietario'}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
+        )}
+        {selectedOption === "Crear Consulta a Votar" &amp;&amp; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">Box</span> <span class="hljs-attr">sx</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">border:</span> '<span class="hljs-attr">1px</span> <span class="hljs-attr">solid</span> <span class="hljs-attr">black</span>', <span class="hljs-attr">padding:</span> '<span class="hljs-attr">10px</span>', <span class="hljs-attr">marginTop:</span> '<span class="hljs-attr">20px</span>' }}&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>Crear Consulta a Votar<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+              <span class="hljs-attr">fullWidth</span>
+              <span class="hljs-attr">label</span>=<span class="hljs-string">"Detalles de la Propuesta"</span>
+              <span class="hljs-attr">value</span>=<span class="hljs-string">{proposalDetails}</span>
+              <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setProposalDetails(e.target.value)}
+              margin="normal" /&gt;
+            <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>
+              <span class="hljs-attr">variant</span>=<span class="hljs-string">"contained"</span>
+              <span class="hljs-attr">color</span>=<span class="hljs-string">"primary"</span>
+              <span class="hljs-attr">onClick</span>=<span class="hljs-string">{createProposal}</span>
+              <span class="hljs-attr">disabled</span>=<span class="hljs-string">{loading}</span>
+              <span class="hljs-attr">fullWidth</span>
+            &gt;</span>
+              {loading ? <span class="hljs-tag">&lt;<span class="hljs-name">CircularProgress</span> <span class="hljs-attr">size</span>=<span class="hljs-string">{24}</span> /&gt;</span> : 'Crear Consulta'}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
+        )}
+        {selectedOption === "Realizar Votación" &amp;&amp; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">Box</span> <span class="hljs-attr">sx</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">border:</span> '<span class="hljs-attr">1px</span> <span class="hljs-attr">solid</span> <span class="hljs-attr">black</span>', <span class="hljs-attr">padding:</span> '<span class="hljs-attr">10px</span>', <span class="hljs-attr">marginTop:</span> '<span class="hljs-attr">20px</span>' }}&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Typography</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">"h6"</span> <span class="hljs-attr">gutterBottom</span>&gt;</span>Realizar Votación<span class="hljs-tag">&lt;/<span class="hljs-name">Typography</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+              <span class="hljs-attr">fullWidth</span>
+              <span class="hljs-attr">label</span>=<span class="hljs-string">"ID de la Propuesta"</span>
+              <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span>
+              <span class="hljs-attr">value</span>=<span class="hljs-string">{proposalId}</span>
+              <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setProposalId(e.target.value)}
+              margin="normal" /&gt;
+            <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+              <span class="hljs-attr">fullWidth</span>
+              <span class="hljs-attr">label</span>=<span class="hljs-string">"Votos"</span>
+              <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span>
+              <span class="hljs-attr">value</span>=<span class="hljs-string">{votes}</span>
+              <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setVotes(e.target.value)}
+              margin="normal" /&gt;
+            <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>
+              <span class="hljs-attr">variant</span>=<span class="hljs-string">"contained"</span>
+              <span class="hljs-attr">color</span>=<span class="hljs-string">"primary"</span>
+              <span class="hljs-attr">onClick</span>=<span class="hljs-string">{voteOnProposal}</span>
+              <span class="hljs-attr">disabled</span>=<span class="hljs-string">{loading}</span>
+              <span class="hljs-attr">fullWidth</span>
+            &gt;</span>
+              {loading ? <span class="hljs-tag">&lt;<span class="hljs-name">CircularProgress</span> <span class="hljs-attr">size</span>=<span class="hljs-string">{24}</span> /&gt;</span> : 'Votar en la Propuesta'}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span>
+        )}
+     <span class="hljs-tag">&lt;/<span class="hljs-name">Container</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ErrorBoundary</span>&gt;</span></span>
   );
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;
 </div></code></pre>
 <h2 id="interacci%C3%B3n-con-el-contrato-de-la-comunidad">Interacción con el Contrato de la Comunidad</h2>
 <p>Este proyecto React permite interactuar con un contrato inteligente de Ethereum para gestionar una comunidad. Los usuarios pueden registrar miembros y consultar información del contrato directamente desde la interfaz.</p>
@@ -662,7 +1000,7 @@ Votaciones: Permite a los miembros votar en propuestas activas.</p>
 <li><code>tokens</code>: Número de tokens a asignar al nuevo miembro.</li>
 <li><code>loading</code>: Estado para controlar la visualización del indicador de carga durante las transacciones.</li>
 </ul>
-<h4 id="hook-useeffect">Hook <code>useEffect</code></h4>
+<h4 id="hook-useeffect-de-ejemplo">Hook <code>useEffect</code> de ejemplo</h4>
 <p>Inicializa la conexión con MetaMask y carga los datos iniciales desde el contrato:</p>
 <pre class="hljs"><code><div>useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadWeb3</span>(<span class="hljs-params"></span>) </span>{
@@ -711,24 +1049,10 @@ loadWeb3();
 
 </div></code></pre>
 <h3 id="mejoras-futuras">Mejoras Futuras</h3>
-<p><strong>Manejo avanzado de errores</strong>: Proporcionar retroalimentación más detallada sobre los errores de blockchain.
+<p><strong>Manejo avanzado de errores</strong>: Proporcionar retroalimentación más detallada sobre los errores de blockchain. OK
 <strong>Actualizaciones en tiempo real</strong>: Implementar WebSocket u otra tecnología para obtener actualizaciones en tiempo real del estado del contrato.
-<strong>Accesibilidad mejorada:</strong> Asegurar que la interfaz cumpla con los estándares de accesibilidad.</p>
-<h3 id="instalaci%C3%B3n-y-configuraci%C3%B3n">Instalación y Configuración</h3>
-<p>Para ejecutar este proyecto localmente, necesitarás instalar las dependencias y configurar MetaMask en tu navegador.</p>
-<h3 id="prerrequisitos">Prerrequisitos</h3>
-<p>Node.js
-npm o yarn
-MetaMask instalado en tu navegador</p>
-<h3 id="pasos-para-la-instalaci%C3%B3n">Pasos para la Instalación</h3>
-<p>Clona el repositorio.
-Instala las dependencias:</p>
-<pre class="hljs"><code><div>npm install
-npm start
-
-</div></code></pre>
-<h3 id="uso-de-vs-code-y-github">Uso de VS Code y GitHub</h3>
-<p><img src="https://github.com/richpob/mi-dao-dapp/assets/133718913/be280fea-4ce9-41ba-b469-8bf2c9e0e5b1" alt="image"></p>
+<strong>Accesibilidad mejorada:</strong> Asegurar que la interfaz cumpla con los estándares de accesibilidad.
+<strong>Completar otras funciones del contrato:</strong> Pendientes funcionalidades del Smart Contrat y mejoras en la usabilidad de cara al usuario.</p>
 <h2 id="licencia">Licencia</h2>
 <p>Este proyecto está bajo la Licencia MIT.</p>
 
