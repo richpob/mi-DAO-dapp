@@ -22,7 +22,7 @@ La versión original de estas funciones utiliza solo el modificador onlyOwner de
 
 Además, estas adiciones hacen que las intenciones de seguridad y control del contrato sean explícitas, lo que es una práctica recomendada en el desarrollo de contratos inteligentes para evitar errores o malentendidos sobre los controles de acceso que están en vigencia.
 
-### 2 Mejoras al código react
+### 2. Mejoras al código react
 En la nueva versión del código React que proporcionaste, se ha añadido una funcionalidad clave que extiende la interactividad del sistema de votación de comunidades. Aquí detallo las funciones adicionales y cómo enriquecen la aplicación:
 
 #### Funciones Adicionales Incorporadas
@@ -47,7 +47,7 @@ En la nueva versión del código React que proporcionaste, se ha añadido una fu
 Estas adiciones hacen que la aplicación no solo sea un lugar para votar sobre las propuestas, sino también un centro de gestión de propuestas donde se pueden llevar a cabo acciones críticas basadas en los resultados de las votaciones o en las necesidades de la comunidad. Esta integración más profunda con el contrato inteligente subyacente expande las capacidades del sistema para facilitar una administración eficaz y transparente de actividades comunitarias.
 
 
-### 2. Se compila, se deploya y valida en Sepolia Test
+### 3. Se compila, se deploya y valida en Sepolia Test
  - **URL Contrato Validado** https://sepolia.etherscan.io/address/0x283bbb7fc922f0d82501e5c4292f4dd3ba068d8d#code
  - **Salida de Truflle usando Truffle**
 ```bash
@@ -102,7 +102,7 @@ Verifying contracts on sourcify
    Pass - Verified: https://sourcify.dev/#/lookup/0x283bbb7fc922f0D82501e5c4292F4dd3BA068d8d
    Successfully verified 1 contract(s).
 ```
-### 3 BuilD del proyecto REACT previo a IPFS 
+### 4. Build del proyecto REACT previo a IPFS 
 ``` bash
 ubuntu@ubuntu:~/Documents/GitHub/mi-dao-dapp$ npm run build
 
@@ -145,7 +145,7 @@ npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.6.0
 npm notice Run npm install -g npm@10.6.0 to update!
 npm notice 
 ```
-### 4 Copia y ejecución con IPFS Desktop y Navegador Brave
+### 5. Copia y ejecución con IPFS Desktop y Navegador Brave
  - **IPFS Dapp Descentralizada:** ipfs://bafybeigzr7r5eycnh4nbzrs4mv3an2vyyywmpbyq3pjmytrdfzryq233kq/
 ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/e523e282-d704-4729-a976-cdc5d9c2fa92)
 - **Ejecucion desde Brave**
