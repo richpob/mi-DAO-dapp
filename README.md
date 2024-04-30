@@ -77,7 +77,7 @@ Verifying contracts on sourcify
    Pass - Verified: https://sourcify.dev/#/lookup/0x283bbb7fc922f0D82501e5c4292F4dd3BA068d8d
    Successfully verified 1 contract(s).
 ```
-### Buil del proyecto previo a la copia en IPFS 
+### 3 BuilD del proyecto REACT previo a IPFS 
 ``` bash
 ubuntu@ubuntu:~/Documents/GitHub/mi-dao-dapp$ npm run build
 
@@ -120,7 +120,7 @@ npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.6.0
 npm notice Run npm install -g npm@10.6.0 to update!
 npm notice 
 ```
-### Copia a IPFS Desktop 
+### 4 Copia y ejecución con IPFS Desktop y Navegador Brave
  - **IPFS Dapp Descentralizada:** ipfs://bafybeigzr7r5eycnh4nbzrs4mv3an2vyyywmpbyq3pjmytrdfzryq233kq/
 ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/e523e282-d704-4729-a976-cdc5d9c2fa92)
 - **Ejecucion desde Brave**
