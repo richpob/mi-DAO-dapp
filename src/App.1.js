@@ -92,8 +92,8 @@ export function App() {
 
     const onNetworkChange = newNetwork => {
       setCurrentNetwork(newNetwork);
-      if (newNetwork !== '0x539') {
-        alert('¡No estás conectado a la red 0x539!');
+      if (newNetwork !== '0xaa36a7') {
+        alert('¡No estás conectado a la red 11155111 (0xaa36a7)!');
       }
     };
 
@@ -172,6 +172,25 @@ export function App() {
       setLoading(false);
     }
   }
+//Nuevo codigo para Ejecutar Proposal
+async function executeProposal() {
+  if (!contract || !proposalId) {
+    alert('Todos los campos son obligatorios para registrar en la propuesta');
+    return;
+  }
+  setLoading(true);
+  try {
+    // Lógica para votar en la propuesta
+    await contract.methods.executeProposal(proposalId).send({ from: accounts[0] });
+    alert('Encuesta registrada exitosamente');
+  } catch (error) {
+    console.error('Error al registrar en la propuesta:', error);
+    alert('Error al registrar en la propuesta');
+  } finally {
+    setLoading(false);
+  }
+}
+
 
   return (
     <ErrorBoundary onError={(error, componentStack) => {
@@ -196,6 +215,7 @@ export function App() {
         >
           <MenuItem onClick={() => handleMenuItemClick("Crear Consulta a Votar")}>Opción 1: Crear Consulta a Votar</MenuItem>
           <MenuItem onClick={() => handleMenuItemClick("Realizar Votación")}>Opción 2: Realizar Votación</MenuItem>
+          <MenuItem onClick={() => handleMenuItemClick("Ejecutar Proposal")}>Opcion 3: Ejecutar o activar Encuesta por numero</MenuItem>
           <MenuItem onClick={() => handleMenuItemClick("Ingreso de miembros de la comunidad")}>Opcion 4: Ingreso de miembros de la comunidad</MenuItem>
         </Menu>
         <Typography variant="h4" component="h1" gutterBottom>
@@ -292,6 +312,35 @@ export function App() {
               fullWidth
             >
               {loading ? <CircularProgress size={24} /> : 'Votar en la Propuesta'}
+            </Button>
+          </Box>
+        )}
+        {/* //Llamado a opcion 3 menu */}
+        {selectedOption === "Ejecutar Proposal" && (
+          <Box sx={{ border: '1px solid black', padding: '10px', marginTop: '20px' }}>
+            <Typography variant="h6" gutterBottom>Ejecutar Proposal</Typography>
+            <TextField
+              fullWidth
+              label="ID de la Propuesta"
+              type="number"
+              value={proposalId}
+              onChange={e => setProposalId(e.target.value)}
+              margin="normal" />
+            {/* <TextField
+              fullWidth
+              label="Votos"
+              type="number"
+              value={votes}
+              onChange={e => setVotes(e.target.value)}
+              margin="normal" /> */}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={executeProposal}
+              disabled={loading}
+              fullWidth
+            >
+              {loading ? <CircularProgress size={24} /> : 'Ejecutar Proposal'}
             </Button>
           </Box>
         )}

@@ -121,7 +121,7 @@ npm notice Run npm install -g npm@10.6.0 to update!
 npm notice 
 ```
 ### Copia a IPFS Desktop 
- - **IPFS Dapp Descentralizada:** ipfs://bafybeigwo7d7e6h6n7hw356els72evmeukkhzrxhizr4qvjj6xf2kd5zja/
+ - **IPFS Dapp Descentralizada:** ipfs://bafybeigzr7r5eycnh4nbzrs4mv3an2vyyywmpbyq3pjmytrdfzryq233kq/
 ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/e523e282-d704-4729-a976-cdc5d9c2fa92)
 
 
