@@ -1,4 +1,4 @@
-# Sistema de Votación para una Comunidad Sprint 3
+# Sistema de Votación para una Comunidad Sprint 4: Proyecto FINAL
 
 ## Descripción
 Este proyecto es un sistema de votación descentralizado para una comunidad, implementado utilizando un smart contract en Ethereum y una interfaz de usuario desarrollada en React. Permite a los miembros registrados votar en propuestas y ver los resultados de las votaciones de manera transparente y segura.
@@ -123,7 +123,8 @@ npm notice
 ### Copia a IPFS Desktop 
  - **IPFS Dapp Descentralizada:** ipfs://bafybeigzr7r5eycnh4nbzrs4mv3an2vyyywmpbyq3pjmytrdfzryq233kq/
 ![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/e523e282-d704-4729-a976-cdc5d9c2fa92)
-
+- **Ejecucion desde Brave**
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/fad5559c-b451-44d4-8659-d3fc40f24317)
 
 
 ## Instalación de ambiente de desarrollo en Ubuntu 22.04
