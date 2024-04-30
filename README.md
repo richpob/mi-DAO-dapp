@@ -12,6 +12,74 @@ Este proyecto es un sistema de votación descentralizado para una comunidad, imp
 - **React**: Biblioteca de JavaScript para construir la interfaz de usuario.
 - **Web3.js**: Biblioteca para interactuar con nodos Ethereum desde el navegador.
 - **Material-UI**: Biblioteca de componentes React para un diseño de interfaz moderno y responsive.
+
+## Mejora del proyecto final
+### 1. Control de errores del contrato
+
+La mejora realizada en la versión modificada del contrato de Solidity Community es la inclusión de una verificación adicional en varias funciones para asegurarse de que solo el propietario del contrato puede ejecutarlas. Esta verificación se realiza mediante la condición **require(msg.sender == owner(), "Error: Solo el propietario puede ejecutar esta funcion")**; añadida en las funciones registerMember, createProposal, y executeProposal. Esta es una medida de seguridad adicional que garantiza que las operaciones críticas no puedan ser ejecutadas por una cuenta no autorizada.
+
+La versión original de estas funciones utiliza solo el modificador onlyOwner de OpenZeppelin, que ya impide que usuarios que no son el propietario ejecuten estas funciones. Sin embargo, la inclusión explícita de la verificación require con un mensaje de error personalizado puede proporcionar una retroalimentación más clara a quien intenta ejecutar la función sin ser el propietario, mejorando la experiencia del usuario y haciendo el código más legible en cuanto a sus requerimientos de seguridad.
+
+Además, estas adiciones hacen que las intenciones de seguridad y control del contrato sean explícitas, lo que es una práctica recomendada en el desarrollo de contratos inteligentes para evitar errores o malentendidos sobre los controles de acceso que están en vigencia.
+
+### 2. Se compila, se deploya y valida en Sepolia Test
+ - **URL Contrato Validado** https://sepolia.etherscan.io/address/0x283bbb7fc922f0d82501e5c4292f4dd3ba068d8d#code
+ - **Salida de Truflle usando Truffle**
+```bash
+ubuntu@ubuntu:~/Documents/GitHub/mi-dao-dapp$ truffle migrate --network dashboard
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+Starting migrations...
+======================
+> Network name:    'dashboard'
+> Network id:      11155111
+> Block gas limit: 30000000 (0x1c9c380)
+
+
+2_deploy_community.js
+=====================
+
+   Replacing 'Community'
+   ---------------------
+   > transaction hash:    0x5bc476df6399dcec3699844531c7a49d46b69894a6adcec6e77c571c317202ecssage.
+   > Blocks: 5            Seconds: 52
+   > contract address:    0x283bbb7fc922f0D82501e5c4292F4dd3BA068d8d
+   > block number:        5810625
+   > block timestamp:     1714505832
+   > account:             0xc83273f025ecEd0317f52DfE26d95C4638a10D7E
+   > balance:             0.234962156593733112
+   > gas used:            1601401 (0x186f79)
+   > gas price:           2.580861465 gwei
+   > value sent:          0 ETH
+   > total cost:          0.004132994130912465 ETH
+
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.004132994130912465 ETH
+
+Summary
+=======
+> Total deployments:   1
+> Final cost:          0.004132994130912465 ETH
+
+
+ubuntu@ubuntu:~/Documents/GitHub/mi-dao-dapp$ truffle run verify Community --network dashboard
+Verifying contracts on etherscan
+   Verifying Community
+   Pass - Verified: https://sepolia.etherscan.io/address/0x283bbb7fc922f0D82501e5c4292F4dd3BA068d8d#code
+   Successfully verified 1 contract(s).
+Verifying contracts on sourcify
+   Verifying Community
+   Pass - Verified: https://sourcify.dev/#/lookup/0x283bbb7fc922f0D82501e5c4292F4dd3BA068d8d
+   Successfully verified 1 contract(s).
+```
+
+
+
 ## Instalación de ambiente de desarrollo en Ubuntu 22.04
 
 los pasos para configurar un entorno de desarrollo completo para el desarrollo de aplicaciones descentralizadas (DApps) sobre la blockchain en Ubuntu. La infraestructura creada se puede desglosar en varias partes:

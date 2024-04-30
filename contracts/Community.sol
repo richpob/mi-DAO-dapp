@@ -43,10 +43,12 @@ contract Community is Ownable(msg.sender) {
     }
 
     function registerMember(address member, uint256 tokens) public onlyOwner {
+        require(msg.sender == owner(), "Error: Solo el propietario puede ejecutar esta funcion");
         memberTokens[member] = tokens;
     }
 
     function createProposal(string memory description) public onlyOwner {
+        require(msg.sender == owner(), "Error: Solo el propietario puede ejecutar esta funcion");
         proposals.push(Proposal({
             description: description,
             voteCount: 0,
@@ -69,6 +71,7 @@ contract Community is Ownable(msg.sender) {
     }
 
     function executeProposal(uint256 proposalId) public onlyOwner {
+        require(msg.sender == owner(), "Error: Solo el propietario puede ejecutar esta funcion");
         require(!proposals[proposalId].executed, "Proposal already executed");
         proposals[proposalId].executed = true;
         // Logic to execute the proposal goes here
