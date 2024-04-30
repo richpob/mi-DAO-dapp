@@ -36,7 +36,7 @@ Compiling your contracts...
 Starting migrations...
 ======================
 > Network name:    'dashboard'
-> Network id:      11155111
+> Network id:      11155111 #Red Sepolia Testnet
 > Block gas limit: 30000000 (0x1c9c380)
 
 
@@ -77,6 +77,52 @@ Verifying contracts on sourcify
    Pass - Verified: https://sourcify.dev/#/lookup/0x283bbb7fc922f0D82501e5c4292F4dd3BA068d8d
    Successfully verified 1 contract(s).
 ```
+### Buil del proyecto previo a la copia en IPFS 
+``` bash
+ubuntu@ubuntu:~/Documents/GitHub/mi-dao-dapp$ npm run build
+
+> mi-dao-dapp@0.1.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Compiled with warnings.
+
+[eslint] 
+src/App.1.js
+  Line 20:10:   'members' is assigned a value but never used    no-unused-vars
+  Line 117:18:  'handleFetchMembers' is defined but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  234.74 kB (-1 B)  build/static/js/main.e1e40208.js
+  1.78 kB           build/static/js/453.d058d68f.chunk.js
+  263 B             build/static/css/main.e6c13ad2.css
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
+npm notice 
+npm notice New minor version of npm available! 10.5.0 -> 10.6.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.6.0
+npm notice Run npm install -g npm@10.6.0 to update!
+npm notice 
+```
+### Copia a IPFS Desktop 
+ - **IPFS Dapp Descentralizada:** ipfs://bafybeigwo7d7e6h6n7hw356els72evmeukkhzrxhizr4qvjj6xf2kd5zja/
+![image](https://github.com/richpob/mi-dao-dapp/assets/133718913/e523e282-d704-4729-a976-cdc5d9c2fa92)
 
 
 
